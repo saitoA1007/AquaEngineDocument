@@ -1,0 +1,605 @@
+<!doctype html>
+<html class="no-js" lang="ja" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="検索" href="../search.html"><link rel="next" title="Core" href="Core.html"><link rel="prev" title="Collision" href="Collision.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Common - AquaEngine</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">AquaEngine</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">AquaEngine</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="検索" name="q" aria-label="検索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">ガイド</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/getting_started.html">はじめに</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">リファレンス</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">APIリファレンス</a><input aria-label="Toggle navigation of APIリファレンス" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2D.html">2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3D.html">3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision.html">Collision</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Editor.html">Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Graphics.html">Graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Input.html">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scene.html">Scene</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/Common.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="common">
+<h1>Common<a class="headerlink" href="#common" title="Link to this heading">¶</a></h1>
+<section id="convertstring-h">
+<h2>ConvertString.h<a class="headerlink" href="#convertstring-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Common/ConvertString.h</span></code></p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413ConvertStringRKNSt6stringE">
+<span id="_CPPv313ConvertStringRKNSt6stringE"></span><span id="_CPPv213ConvertStringRKNSt6stringE"></span><span id="ConvertString__ssCR"></span><span class="target" id="_convert_string_8h_1abbbcccf7663342dd69581b7971a7fb74"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">wstring</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ConvertString</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413ConvertStringRKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413ConvertStringRKNSt7wstringE">
+<span id="_CPPv313ConvertStringRKNSt7wstringE"></span><span id="_CPPv213ConvertStringRKNSt7wstringE"></span><span id="ConvertString__std::wstringCR"></span><span class="target" id="_convert_string_8h_1af141c771657e4d5f7ef4fab0f20dabf6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ConvertString</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">wstring</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413ConvertStringRKNSt7wstringE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="crashhandle-h">
+<h2>CrashHandle.h<a class="headerlink" href="#crashhandle-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Common/CrashHandle.h</span></code></p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410ExportDumpP18EXCEPTION_POINTERS">
+<span id="_CPPv310ExportDumpP18EXCEPTION_POINTERS"></span><span id="_CPPv210ExportDumpP18EXCEPTION_POINTERS"></span><span id="ExportDump__EXCEPTION_POINTERSP"></span><span class="target" id="_crash_handle_8h_1a3402d88992d3d6ee60b61ebb8790d993"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">LONG</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ExportDump</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EXCEPTION_POINTERS</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">exception</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410ExportDumpP18EXCEPTION_POINTERS" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="createbufferresource-h">
+<h2>CreateBufferResource.h<a class="headerlink" href="#createbufferresource-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Common/CreateBufferResource.h</span></code></p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420CreateBufferResourceP13ID3D12Device56size_t15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATES20D3D12_RESOURCE_FLAGS">
+<span id="_CPPv320CreateBufferResourceP13ID3D12Device56size_t15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATES20D3D12_RESOURCE_FLAGS"></span><span id="_CPPv220CreateBufferResourceP13ID3D12Device56size_t15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATES20D3D12_RESOURCE_FLAGS"></span><span id="CreateBufferResource__ID3D12Device5P.s.D3D12_HEAP_TYPE.D3D12_RESOURCE_STATES.D3D12_RESOURCE_FLAGS"></span><span class="target" id="_create_buffer_resource_8h_1aac5f530b24239c8ce4c2cbca1f6f68ec"></span><span class="n"><span class="pre">Microsoft</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">WRL</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ComPtr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ID3D12Resource</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CreateBufferResource</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ID3D12Device5</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">device</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sizeInBytes</span></span>, <span class="n"><span class="pre">D3D12_HEAP_TYPE</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">heapType</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_HEAP_TYPE_UPLOAD</span></span>, <span class="n"><span class="pre">D3D12_RESOURCE_STATES</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">initialState</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_RESOURCE_STATE_GENERIC_READ</span></span>, <span class="n"><span class="pre">D3D12_RESOURCE_FLAGS</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">flags</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_RESOURCE_FLAG_NONE</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CreateBufferResourceP13ID3D12Device56size_t15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATES20D3D12_RESOURCE_FLAGS" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418TransitionResourceP25ID3D12GraphicsCommandListP14ID3D12Resource21D3D12_RESOURCE_STATES21D3D12_RESOURCE_STATES">
+<span id="_CPPv318TransitionResourceP25ID3D12GraphicsCommandListP14ID3D12Resource21D3D12_RESOURCE_STATES21D3D12_RESOURCE_STATES"></span><span id="_CPPv218TransitionResourceP25ID3D12GraphicsCommandListP14ID3D12Resource21D3D12_RESOURCE_STATES21D3D12_RESOURCE_STATES"></span><span id="TransitionResource__ID3D12GraphicsCommandListP.ID3D12ResourceP.D3D12_RESOURCE_STATES.D3D12_RESOURCE_STATES"></span><span class="target" id="_create_buffer_resource_8h_1a35cd6c8c2ca29af7d7f6ab9a032f85d2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TransitionResource</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ID3D12GraphicsCommandList</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">commandList</span></span>, <span class="n"><span class="pre">ID3D12Resource</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">resource</span></span>, <span class="n"><span class="pre">D3D12_RESOURCE_STATES</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">before</span></span>, <span class="n"><span class="pre">D3D12_RESOURCE_STATES</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">after</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418TransitionResourceP25ID3D12GraphicsCommandListP14ID3D12Resource21D3D12_RESOURCE_STATES21D3D12_RESOURCE_STATES" title="Link to this definition">¶</a><br /></dt>
+<dd><p>リソースの状態を切り替え </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>commandList</strong> -- コマンド</p></li>
+<li><p><strong>resource</strong> -- リソース</p></li>
+<li><p><strong>before</strong> -- 前の状態</p></li>
+<li><p><strong>after</strong> -- 後の状態</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414CreateResourceP12ID3D12DeviceRK19D3D12_RESOURCE_DESC15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATESPK17D3D12_CLEAR_VALUE16D3D12_HEAP_FLAGS">
+<span id="_CPPv314CreateResourceP12ID3D12DeviceRK19D3D12_RESOURCE_DESC15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATESPK17D3D12_CLEAR_VALUE16D3D12_HEAP_FLAGS"></span><span id="_CPPv214CreateResourceP12ID3D12DeviceRK19D3D12_RESOURCE_DESC15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATESPK17D3D12_CLEAR_VALUE16D3D12_HEAP_FLAGS"></span><span id="CreateResource__ID3D12DeviceP.D3D12_RESOURCE_DESCCR.D3D12_HEAP_TYPE.D3D12_RESOURCE_STATES.D3D12_CLEAR_VALUECP.D3D12_HEAP_FLAGS"></span><span class="target" id="_create_buffer_resource_8h_1a8d5134850732d55edf86cc243ad3a962"></span><span class="n"><span class="pre">Microsoft</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">WRL</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ComPtr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ID3D12Resource</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CreateResource</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ID3D12Device</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">device</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_RESOURCE_DESC</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">resourceDesc</span></span>, <span class="n"><span class="pre">D3D12_HEAP_TYPE</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">heapType</span></span>, <span class="n"><span class="pre">D3D12_RESOURCE_STATES</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">initialState</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_CLEAR_VALUE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">clearValue</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span>, <span class="n"><span class="pre">D3D12_HEAP_FLAGS</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">heapFlags</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_HEAP_FLAG_NONE</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CreateResourceP12ID3D12DeviceRK19D3D12_RESOURCE_DESC15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATESPK17D3D12_CLEAR_VALUE16D3D12_HEAP_FLAGS" title="Link to this definition">¶</a><br /></dt>
+<dd><p>リソースの作成 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419CreateTexture2dDesc8uint32_t8uint32_t11DXGI_FORMAT20D3D12_RESOURCE_FLAGS8uint16_t">
+<span id="_CPPv319CreateTexture2dDesc8uint32_t8uint32_t11DXGI_FORMAT20D3D12_RESOURCE_FLAGS8uint16_t"></span><span id="_CPPv219CreateTexture2dDesc8uint32_t8uint32_t11DXGI_FORMAT20D3D12_RESOURCE_FLAGS8uint16_t"></span><span id="CreateTexture2dDesc__uint32_t.uint32_t.DXGI_FORMAT.D3D12_RESOURCE_FLAGS.uint16_t"></span><span class="target" id="_create_buffer_resource_8h_1ad8f937c8656470ffa809d30d933fcb14"></span><span class="n"><span class="pre">D3D12_RESOURCE_DESC</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CreateTexture2dDesc</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">height</span></span>, <span class="n"><span class="pre">DXGI_FORMAT</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">format</span></span>, <span class="n"><span class="pre">D3D12_RESOURCE_FLAGS</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">flags</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_RESOURCE_FLAG_NONE</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mipLevels</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CreateTexture2dDesc8uint32_t8uint32_t11DXGI_FORMAT20D3D12_RESOURCE_FLAGS8uint16_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>テクスチャ用設定 </p>
+</dd></dl>
+
+</section>
+<section id="depthstenciltexture-h">
+<h2>DepthStencilTexture.h<a class="headerlink" href="#depthstenciltexture-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Common/DepthStencilTexture.h</span></code></p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433CreateDepthStencilTextureResourceP12ID3D12Device7int32_t7int32_t">
+<span id="_CPPv333CreateDepthStencilTextureResourceP12ID3D12Device7int32_t7int32_t"></span><span id="_CPPv233CreateDepthStencilTextureResourceP12ID3D12Device7int32_t7int32_t"></span><span id="CreateDepthStencilTextureResource__ID3D12DeviceP.int32_t.int32_t"></span><span class="target" id="_depth_stencil_texture_8h_1aa06b0d9f675ed152d9d52c5a1c444bf0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Microsoft</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">WRL</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ComPtr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ID3D12Resource</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CreateDepthStencilTextureResource</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ID3D12Device</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">device</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">height</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433CreateDepthStencilTextureResourceP12ID3D12Device7int32_t7int32_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="descriptorhandle-h">
+<h2>DescriptorHandle.h<a class="headerlink" href="#descriptorhandle-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Common/DescriptorHandle.h</span></code></p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422GetCPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t">
+<span id="_CPPv322GetCPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t"></span><span id="_CPPv222GetCPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t"></span><span id="GetCPUDescriptorHandle__ID3D12DescriptorHeapP.uint32_t.uint32_t"></span><span class="target" id="_descriptor_handle_8h_1a4b956c1ab28d436ca34b6e9660b8c2c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_CPU_DESCRIPTOR_HANDLE</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCPUDescriptorHandle</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ID3D12DescriptorHeap</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">descriptorHeap</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">descriptorSize</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422GetCPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422GetGPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t">
+<span id="_CPPv322GetGPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t"></span><span id="_CPPv222GetGPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t"></span><span id="GetGPUDescriptorHandle__ID3D12DescriptorHeapP.uint32_t.uint32_t"></span><span class="target" id="_descriptor_handle_8h_1ad6090bd8e754735637d70f4a3fba2d1d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">D3D12_GPU_DESCRIPTOR_HANDLE</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetGPUDescriptorHandle</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ID3D12DescriptorHeap</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">descriptorHeap</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">descriptorSize</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422GetGPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="descriptorheap-h">
+<h2>DescriptorHeap.h<a class="headerlink" href="#descriptorheap-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Common/DescriptorHeap.h</span></code></p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420CreateDescriptorHeapP12ID3D12Device26D3D12_DESCRIPTOR_HEAP_TYPE4UINTb">
+<span id="_CPPv320CreateDescriptorHeapP12ID3D12Device26D3D12_DESCRIPTOR_HEAP_TYPE4UINTb"></span><span id="_CPPv220CreateDescriptorHeapP12ID3D12Device26D3D12_DESCRIPTOR_HEAP_TYPE4UINTb"></span><span id="CreateDescriptorHeap__ID3D12DeviceP.D3D12_DESCRIPTOR_HEAP_TYPE.UINT.b"></span><span class="target" id="_descriptor_heap_8h_1a94d70f2e1e1f106c2f85ccf0eb268ad2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Microsoft</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">WRL</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ComPtr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ID3D12DescriptorHeap</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CreateDescriptorHeap</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ID3D12Device</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">device</span></span>, <span class="n"><span class="pre">D3D12_DESCRIPTOR_HEAP_TYPE</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">heapType</span></span>, <span class="n"><span class="pre">UINT</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numDescriptors</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shaderVisible</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CreateDescriptorHeapP12ID3D12Device26D3D12_DESCRIPTOR_HEAP_TYPE4UINTb" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="logmanager-h">
+<h2>LogManager.h<a class="headerlink" href="#logmanager-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Common/LogManager.h</span></code></p>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv47LogData">
+<span id="_CPPv37LogData"></span><span id="_CPPv27LogData"></span><span id="LogData"></span><span class="target" id="struct_log_data"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LogData</span></span></span><a class="headerlink" href="#_CPPv47LogData" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7LogData7messageE">
+<span id="_CPPv3N7LogData7messageE"></span><span id="_CPPv2N7LogData7messageE"></span><span id="LogData::message__ss"></span><span class="target" id="struct_log_data_1a456429f84182de724368f79aa2b82653"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message</span></span></span><a class="headerlink" href="#_CPPv4N7LogData7messageE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7LogData9groupNameE">
+<span id="_CPPv3N7LogData9groupNameE"></span><span id="_CPPv2N7LogData9groupNameE"></span><span id="LogData::groupName__ss"></span><span class="target" id="struct_log_data_1a89cab2b647b5fbc84644d8fd222c073f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">groupName</span></span></span><a class="headerlink" href="#_CPPv4N7LogData9groupNameE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv410LogManager">
+<span id="_CPPv310LogManager"></span><span id="_CPPv210LogManager"></span><span id="LogManager"></span><span class="target" id="class_log_manager"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LogManager</span></span></span><a class="headerlink" href="#_CPPv410LogManager" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10LogManager6CreateEv">
+<span id="_CPPv3N10LogManager6CreateEv"></span><span id="_CPPv2N10LogManager6CreateEv"></span><span id="LogManager::Create"></span><span class="target" id="class_log_manager_1a22e40628312d9896f266614800c432c4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Create</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10LogManager6CreateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>ログを書き込むため準備 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10LogManager3LogERKNSt6stringE">
+<span id="_CPPv3N10LogManager3LogERKNSt6stringE"></span><span id="_CPPv2N10LogManager3LogERKNSt6stringE"></span><span id="LogManager::Log__ssCR"></span><span class="target" id="class_log_manager_1a761a66803d17dc220365e6a11747aedc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Log</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">message</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10LogManager3LogERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>ログを出力 </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> -- 出力するメッセージ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10LogManager3LogERKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N10LogManager3LogERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N10LogManager3LogERKNSt6stringERKNSt6stringE"></span><span id="LogManager::Log__ssCR.ssCR"></span><span class="target" id="class_log_manager_1a9d653f55584d085c198ac18ab5d40573"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Log</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">message</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">groupName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10LogManager3LogERKNSt6stringERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>デバック時にコンソールに出力する用のログ </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> -- </p></li>
+<li><p><strong>groupName</strong> -- </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10LogManager9ClearLogsEv">
+<span id="_CPPv3N10LogManager9ClearLogsEv"></span><span id="_CPPv2N10LogManager9ClearLogsEv"></span><span id="LogManager::ClearLogs"></span><span class="target" id="class_log_manager_1a7579c4a622c95be11c8dad2a3ba9a02b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ClearLogs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10LogManager9ClearLogsEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>ログをクリア </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10LogManager7GetLogsEv">
+<span id="_CPPv3NK10LogManager7GetLogsEv"></span><span id="_CPPv2NK10LogManager7GetLogsEv"></span><span id="LogManager::GetLogsC"></span><span class="target" id="class_log_manager_1a4c18c8252e3a3090bc18d0a62d942aab"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv47LogData" title="LogData"><span class="n"><span class="pre">LogData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetLogs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10LogManager7GetLogsEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>ログを保存したファイルを取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10LogManager9GetGroupsEv">
+<span id="_CPPv3NK10LogManager9GetGroupsEv"></span><span id="_CPPv2NK10LogManager9GetGroupsEv"></span><span id="LogManager::GetGroupsC"></span><span class="target" id="class_log_manager_1aea3a263f5e806f2a5635fdc9bd4ab1dd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_set</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetGroups</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10LogManager9GetGroupsEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>登録しているグループを取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10LogManager11GetInstanceEv">
+<span id="_CPPv3N10LogManager11GetInstanceEv"></span><span id="_CPPv2N10LogManager11GetInstanceEv"></span><span id="LogManager::GetInstance"></span><span class="target" id="class_log_manager_1a74ce0e2feb3934ada9b1758f56c8f547"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410LogManager" title="LogManager"><span class="n"><span class="pre">LogManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetInstance</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10LogManager11GetInstanceEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>インスタンスを取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>doxygenfunction: Unable to resolve function &quot;Log&quot; with arguments (const std::string&amp;, const std::string&amp;) in doxygen xml output for project &quot;AquaEngine&quot; from directory: C:\Users\k024g\source\repos\AquaEngine\docs\_doxygen\xml.
+Potential matches:
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">void</span> <span class="n">Log</span><span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">message</span><span class="p">)</span>
+<span class="o">-</span> <span class="n">void</span> <span class="n">Log</span><span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">message</span><span class="p">,</span> <span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">groupName</span> <span class="o">=</span> <span class="s2">"Generate"</span><span class="p">)</span>
+<span class="o">-</span> <span class="n">void</span> <span class="n">Log</span><span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">message</span><span class="p">,</span> <span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">groupName</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="resourceleakchecker-h">
+<h2>ResourceLeakChecker.h<a class="headerlink" href="#resourceleakchecker-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Common/ResourceLeakChecker.h</span></code></p>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv422D3DResourceLeakChecker">
+<span id="_CPPv322D3DResourceLeakChecker"></span><span id="_CPPv222D3DResourceLeakChecker"></span><span id="D3DResourceLeakChecker"></span><span class="target" id="struct_d3_d_resource_leak_checker"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">D3DResourceLeakChecker</span></span></span><a class="headerlink" href="#_CPPv422D3DResourceLeakChecker" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N22D3DResourceLeakCheckerD0Ev">
+<span id="_CPPv3N22D3DResourceLeakCheckerD0Ev"></span><span id="_CPPv2N22D3DResourceLeakCheckerD0Ev"></span><span id="D3DResourceLeakChecker::~D3DResourceLeakChecker"></span><span class="target" id="struct_d3_d_resource_leak_checker_1af4c6d99e82a98c893fb836f6af687755"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~D3DResourceLeakChecker</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N22D3DResourceLeakCheckerD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="Core.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Core</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="Collision.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Collision</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Common</a><ul>
+<li><a class="reference internal" href="#convertstring-h">ConvertString.h</a><ul>
+<li><a class="reference internal" href="#_CPPv413ConvertStringRKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">ConvertString()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv413ConvertStringRKNSt7wstringE"><code class="docutils literal notranslate"><span class="pre">ConvertString()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#crashhandle-h">CrashHandle.h</a><ul>
+<li><a class="reference internal" href="#_CPPv410ExportDumpP18EXCEPTION_POINTERS"><code class="docutils literal notranslate"><span class="pre">ExportDump()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#createbufferresource-h">CreateBufferResource.h</a><ul>
+<li><a class="reference internal" href="#_CPPv420CreateBufferResourceP13ID3D12Device56size_t15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATES20D3D12_RESOURCE_FLAGS"><code class="docutils literal notranslate"><span class="pre">CreateBufferResource()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv418TransitionResourceP25ID3D12GraphicsCommandListP14ID3D12Resource21D3D12_RESOURCE_STATES21D3D12_RESOURCE_STATES"><code class="docutils literal notranslate"><span class="pre">TransitionResource()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv414CreateResourceP12ID3D12DeviceRK19D3D12_RESOURCE_DESC15D3D12_HEAP_TYPE21D3D12_RESOURCE_STATESPK17D3D12_CLEAR_VALUE16D3D12_HEAP_FLAGS"><code class="docutils literal notranslate"><span class="pre">CreateResource()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv419CreateTexture2dDesc8uint32_t8uint32_t11DXGI_FORMAT20D3D12_RESOURCE_FLAGS8uint16_t"><code class="docutils literal notranslate"><span class="pre">CreateTexture2dDesc()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#depthstenciltexture-h">DepthStencilTexture.h</a><ul>
+<li><a class="reference internal" href="#_CPPv433CreateDepthStencilTextureResourceP12ID3D12Device7int32_t7int32_t"><code class="docutils literal notranslate"><span class="pre">CreateDepthStencilTextureResource()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#descriptorhandle-h">DescriptorHandle.h</a><ul>
+<li><a class="reference internal" href="#_CPPv422GetCPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">GetCPUDescriptorHandle()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv422GetGPUDescriptorHandleP20ID3D12DescriptorHeap8uint32_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">GetGPUDescriptorHandle()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#descriptorheap-h">DescriptorHeap.h</a><ul>
+<li><a class="reference internal" href="#_CPPv420CreateDescriptorHeapP12ID3D12Device26D3D12_DESCRIPTOR_HEAP_TYPE4UINTb"><code class="docutils literal notranslate"><span class="pre">CreateDescriptorHeap()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logmanager-h">LogManager.h</a><ul>
+<li><a class="reference internal" href="#_CPPv47LogData"><code class="docutils literal notranslate"><span class="pre">LogData</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N7LogData7messageE"><code class="docutils literal notranslate"><span class="pre">message</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N7LogData9groupNameE"><code class="docutils literal notranslate"><span class="pre">groupName</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#_CPPv410LogManager"><code class="docutils literal notranslate"><span class="pre">LogManager</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10LogManager6CreateEv"><code class="docutils literal notranslate"><span class="pre">Create()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10LogManager3LogERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">Log()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10LogManager3LogERKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">Log()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10LogManager9ClearLogsEv"><code class="docutils literal notranslate"><span class="pre">ClearLogs()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10LogManager7GetLogsEv"><code class="docutils literal notranslate"><span class="pre">GetLogs()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10LogManager9GetGroupsEv"><code class="docutils literal notranslate"><span class="pre">GetGroups()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10LogManager11GetInstanceEv"><code class="docutils literal notranslate"><span class="pre">GetInstance()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#resourceleakchecker-h">ResourceLeakChecker.h</a><ul>
+<li><a class="reference internal" href="#_CPPv422D3DResourceLeakChecker"><code class="docutils literal notranslate"><span class="pre">D3DResourceLeakChecker</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N22D3DResourceLeakCheckerD0Ev"><code class="docutils literal notranslate"><span class="pre">~D3DResourceLeakChecker()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=c033477b"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=4755f45a"></script>
+    </body>
+</html>

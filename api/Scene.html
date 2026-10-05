@@ -1,0 +1,880 @@
+<!doctype html>
+<html class="no-js" lang="ja" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="検索" href="../search.html"><link rel="prev" title="Math" href="Math.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Scene - AquaEngine</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">AquaEngine</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">AquaEngine</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="検索" name="q" aria-label="検索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">ガイド</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/getting_started.html">はじめに</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">リファレンス</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">APIリファレンス</a><input aria-label="Toggle navigation of APIリファレンス" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2D.html">2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3D.html">3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision.html">Collision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Common.html">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Editor.html">Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Graphics.html">Graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Input.html">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Math.html">Math</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Scene</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/Scene.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="scene">
+<h1>Scene<a class="headerlink" href="#scene" title="Link to this heading">¶</a></h1>
+<section id="iscene-h">
+<h2>IScene.h<a class="headerlink" href="#iscene-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Scene/IScene.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6ISceneE">
+<span id="_CPPv3N10GameEngine6ISceneE"></span><span id="_CPPv2N10GameEngine6ISceneE"></span><span id="GameEngine::IScene"></span><span class="target" id="class_game_engine_1_1_i_scene"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IScene</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine6ISceneE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>各シーンの元 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6ISceneD0Ev">
+<span id="_CPPv3N10GameEngine6ISceneD0Ev"></span><span id="_CPPv2N10GameEngine6ISceneD0Ev"></span><span id="GameEngine::IScene::~IScene"></span><span class="target" id="class_game_engine_1_1_i_scene_1a8092d1e4bc7466b196c19bcac5d7736c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~IScene</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10GameEngine6ISceneD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd><p>デストラクタ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene10InitializeEv">
+<span id="_CPPv3N10GameEngine6IScene10InitializeEv"></span><span id="_CPPv2N10GameEngine6IScene10InitializeEv"></span><span id="GameEngine::IScene::Initialize"></span><span class="target" id="class_game_engine_1_1_i_scene_1af5ffc4f213bfc385dff1378fa0a03fe9"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Initialize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene10InitializeEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>初期化処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene6UpdateEv">
+<span id="_CPPv3N10GameEngine6IScene6UpdateEv"></span><span id="_CPPv2N10GameEngine6IScene6UpdateEv"></span><span id="GameEngine::IScene::Update"></span><span class="target" id="class_game_engine_1_1_i_scene_1aae5796189764546658a9155cdc6d5ee6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Update</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene6UpdateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>更新処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene11DebugUpdateEv">
+<span id="_CPPv3N10GameEngine6IScene11DebugUpdateEv"></span><span id="_CPPv2N10GameEngine6IScene11DebugUpdateEv"></span><span id="GameEngine::IScene::DebugUpdate"></span><span class="target" id="class_game_engine_1_1_i_scene_1a8c6db6fb7a3fe70b3aad8566c403ce33"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugUpdate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene11DebugUpdateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>デバック時、処理して良いものを更新する </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene4DrawEv">
+<span id="_CPPv3N10GameEngine6IScene4DrawEv"></span><span id="_CPPv2N10GameEngine6IScene4DrawEv"></span><span id="GameEngine::IScene::Draw"></span><span class="target" id="class_game_engine_1_1_i_scene_1afc5467e728986ce703ee6243783b2397"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Draw</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene4DrawEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>描画処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene10IsFinishedEv">
+<span id="_CPPv3N10GameEngine6IScene10IsFinishedEv"></span><span id="_CPPv2N10GameEngine6IScene10IsFinishedEv"></span><span id="GameEngine::IScene::IsFinished"></span><span class="target" id="class_game_engine_1_1_i_scene_1a6e6b2e1f9cd3bb0bba86a47416dde29f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsFinished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene10IsFinishedEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>終了したことを伝える </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene13NextSceneNameEv">
+<span id="_CPPv3N10GameEngine6IScene13NextSceneNameEv"></span><span id="_CPPv2N10GameEngine6IScene13NextSceneNameEv"></span><span id="GameEngine::IScene::NextSceneName"></span><span class="target" id="class_game_engine_1_1_i_scene_1a189228f3ad618a9272ce08647bda0c89"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NextSceneName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene13NextSceneNameEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>次のシーン遷移する場面の名前を取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>次のシーン名</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene19GetTransitionEffectEv">
+<span id="_CPPv3N10GameEngine6IScene19GetTransitionEffectEv"></span><span id="_CPPv2N10GameEngine6IScene19GetTransitionEffectEv"></span><span id="GameEngine::IScene::GetTransitionEffect"></span><span class="target" id="class_game_engine_1_1_i_scene_1a90c9608e454c1fc4765158e26b6bd08c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv417ITransitionEffect" title="ITransitionEffect"><span class="n"><span class="pre">ITransitionEffect</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetTransitionEffect</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene19GetTransitionEffectEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene8SetInputEP5InputP12InputCommand">
+<span id="_CPPv3N10GameEngine6IScene8SetInputEP5InputP12InputCommand"></span><span id="_CPPv2N10GameEngine6IScene8SetInputEP5InputP12InputCommand"></span><span id="GameEngine::IScene::SetInput__InputP.InputCommandP"></span><span class="target" id="class_game_engine_1_1_i_scene_1ae2070a2450ec39192f61ec816569ebe1"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetInput</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Input.html#_CPPv4N10GameEngine5InputE" title="GameEngine::Input"><span class="n"><span class="pre">Input</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <a class="reference internal" href="Input.html#_CPPv4N10GameEngine12InputCommandE" title="GameEngine::InputCommand"><span class="n"><span class="pre">InputCommand</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">inputCommand</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene8SetInputEP5InputP12InputCommand" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene18SetResourceManagerEP14TextureManagerP12ModelManagerP16AnimationManagerP17GameObjectManagerP14EffectsManager">
+<span id="_CPPv3N10GameEngine6IScene18SetResourceManagerEP14TextureManagerP12ModelManagerP16AnimationManagerP17GameObjectManagerP14EffectsManager"></span><span id="_CPPv2N10GameEngine6IScene18SetResourceManagerEP14TextureManagerP12ModelManagerP16AnimationManagerP17GameObjectManagerP14EffectsManager"></span><span id="GameEngine::IScene::SetResourceManager__TextureManagerP.ModelManagerP.AnimationManagerP.GameObjectManagerP.EffectsManagerP"></span><span class="target" id="class_game_engine_1_1_i_scene_1af6a5ebcd217a2ea535fc55f5af2ed1cc"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetResourceManager</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Graphics.html#_CPPv4N10GameEngine14TextureManagerE" title="GameEngine::TextureManager"><span class="n"><span class="pre">TextureManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">textureManager</span></span>, <a class="reference internal" href="3D.html#_CPPv4N10GameEngine12ModelManagerE" title="GameEngine::ModelManager"><span class="n"><span class="pre">ModelManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">modelManager</span></span>, <a class="reference internal" href="3D.html#_CPPv4N10GameEngine16AnimationManagerE" title="GameEngine::AnimationManager"><span class="n"><span class="pre">AnimationManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">animationManager</span></span>, <a class="reference internal" href="Core.html#_CPPv4N10GameEngine17GameObjectManagerE" title="GameEngine::GameObjectManager"><span class="n"><span class="pre">GameObjectManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">gameObjectManager</span></span>, <a class="reference internal" href="3D.html#_CPPv4N10GameEngine14EffectsManagerE" title="GameEngine::EffectsManager"><span class="n"><span class="pre">EffectsManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">effectsManager</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene18SetResourceManagerEP14TextureManagerP12ModelManagerP16AnimationManagerP17GameObjectManagerP14EffectsManager" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene9SetRenderEP20RenderPassControllerP11RenderQueueP17PostEffectManager">
+<span id="_CPPv3N10GameEngine6IScene9SetRenderEP20RenderPassControllerP11RenderQueueP17PostEffectManager"></span><span id="_CPPv2N10GameEngine6IScene9SetRenderEP20RenderPassControllerP11RenderQueueP17PostEffectManager"></span><span id="GameEngine::IScene::SetRender__RenderPassControllerP.RenderQueueP.PostEffectManagerP"></span><span class="target" id="class_game_engine_1_1_i_scene_1adc0d875ca45dbcff53d6285f4e97dd3d"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetRender</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Graphics.html#_CPPv4N10GameEngine20RenderPassControllerE" title="GameEngine::RenderPassController"><span class="n"><span class="pre">RenderPassController</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">renderPassController</span></span>, <a class="reference internal" href="Graphics.html#_CPPv4N10GameEngine11RenderQueueE" title="GameEngine::RenderQueue"><span class="n"><span class="pre">RenderQueue</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">renderQueue</span></span>, <a class="reference internal" href="Graphics.html#_CPPv4N10GameEngine17PostEffectManagerE" title="GameEngine::PostEffectManager"><span class="n"><span class="pre">PostEffectManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">postEffectManager</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene9SetRenderEP20RenderPassControllerP11RenderQueueP17PostEffectManager" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine6IScene8SetDebugEP13DebugRenderer">
+<span id="_CPPv3N10GameEngine6IScene8SetDebugEP13DebugRenderer"></span><span id="_CPPv2N10GameEngine6IScene8SetDebugEP13DebugRenderer"></span><span id="GameEngine::IScene::SetDebug__DebugRendererP"></span><span class="target" id="class_game_engine_1_1_i_scene_1a6b48d3ed3028d1bfc61ac8ee0e7a15b3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetDebug</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="3D.html#_CPPv4N10GameEngine13DebugRendererE" title="GameEngine::DebugRenderer"><span class="n"><span class="pre">DebugRenderer</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">debugRenderer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine6IScene8SetDebugEP13DebugRenderer" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="itransitioneffect-h">
+<h2>ITransitionEffect.h<a class="headerlink" href="#itransitioneffect-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Scene/ITransitionEffect.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv417ITransitionEffect">
+<span id="_CPPv317ITransitionEffect"></span><span id="_CPPv217ITransitionEffect"></span><span id="ITransitionEffect"></span><span class="target" id="class_i_transition_effect"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ITransitionEffect</span></span></span><a class="headerlink" href="#_CPPv417ITransitionEffect" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17ITransitionEffectD0Ev">
+<span id="_CPPv3N17ITransitionEffectD0Ev"></span><span id="_CPPv2N17ITransitionEffectD0Ev"></span><span id="ITransitionEffect::~ITransitionEffect"></span><span class="target" id="class_i_transition_effect_1ae98699e1c162b8cd4be6e77cbf30f730"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~ITransitionEffect</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N17ITransitionEffectD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17ITransitionEffect10InitializeEv">
+<span id="_CPPv3N17ITransitionEffect10InitializeEv"></span><span id="_CPPv2N17ITransitionEffect10InitializeEv"></span><span id="ITransitionEffect::Initialize"></span><span class="target" id="class_i_transition_effect_1a4a3bc4334d4eab7f5a7b266c17c4ed90"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Initialize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N17ITransitionEffect10InitializeEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>初期化 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17ITransitionEffect6UpdateEf">
+<span id="_CPPv3N17ITransitionEffect6UpdateEf"></span><span id="_CPPv2N17ITransitionEffect6UpdateEf"></span><span id="ITransitionEffect::Update__float"></span><span class="target" id="class_i_transition_effect_1aa5b9f94a4ea47d6ccbf5a7048b24e3bd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Update</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timer</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N17ITransitionEffect6UpdateEf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>更新処理(0 ~ 1)の範囲を受け取る </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17ITransitionEffect4DrawEv">
+<span id="_CPPv3N17ITransitionEffect4DrawEv"></span><span id="_CPPv2N17ITransitionEffect4DrawEv"></span><span id="ITransitionEffect::Draw"></span><span class="target" id="class_i_transition_effect_1a29885ceb927475e3ba1b1241dd8fb7ce"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Draw</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N17ITransitionEffect4DrawEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>描画処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK17ITransitionEffect15IsMidTransitionEf">
+<span id="_CPPv3NK17ITransitionEffect15IsMidTransitionEf"></span><span id="_CPPv2NK17ITransitionEffect15IsMidTransitionEf"></span><span id="ITransitionEffect::IsMidTransition__floatC"></span><span class="target" id="class_i_transition_effect_1af4f2967e9575eb651ec33f399606da2a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsMidTransition</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timer</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK17ITransitionEffect15IsMidTransitionEf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>中間地点に到達したか </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17ITransitionEffect10GetMaxTimeEv">
+<span id="_CPPv3N17ITransitionEffect10GetMaxTimeEv"></span><span id="_CPPv2N17ITransitionEffect10GetMaxTimeEv"></span><span id="ITransitionEffect::GetMaxTime"></span><span class="target" id="class_i_transition_effect_1a75655f9e5588c9f071b79f9bec14b70d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetMaxTime</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N17ITransitionEffect10GetMaxTimeEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="scenechangerequest-h">
+<h2>SceneChangeRequest.h<a class="headerlink" href="#scenechangerequest-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Scene/SceneChangeRequest.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv418SceneChangeRequest">
+<span id="_CPPv318SceneChangeRequest"></span><span id="_CPPv218SceneChangeRequest"></span><span id="SceneChangeRequest"></span><span class="target" id="class_scene_change_request"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SceneChangeRequest</span></span></span><a class="headerlink" href="#_CPPv418SceneChangeRequest" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18SceneChangeRequest13RequestChangeERKNSt6stringE">
+<span id="_CPPv3N18SceneChangeRequest13RequestChangeERKNSt6stringE"></span><span id="_CPPv2N18SceneChangeRequest13RequestChangeERKNSt6stringE"></span><span id="SceneChangeRequest::RequestChange__ssCR"></span><span class="target" id="class_scene_change_request_1aa863e6f98ed047b3924b5155c9794f19"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RequestChange</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">nextScene</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18SceneChangeRequest13RequestChangeERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンの切り替えをリクエストする </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nextScene</strong> -- 次のシーン名</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18SceneChangeRequest16HasChangeRequestEv">
+<span id="_CPPv3NK18SceneChangeRequest16HasChangeRequestEv"></span><span id="_CPPv2NK18SceneChangeRequest16HasChangeRequestEv"></span><span id="SceneChangeRequest::HasChangeRequestC"></span><span class="target" id="class_scene_change_request_1a3d3936ae220578c401a3169bbf1a5861"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HasChangeRequest</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18SceneChangeRequest16HasChangeRequestEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>リクエストがあるかを取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18SceneChangeRequest15GetRequestSceneEv">
+<span id="_CPPv3NK18SceneChangeRequest15GetRequestSceneEv"></span><span id="_CPPv2NK18SceneChangeRequest15GetRequestSceneEv"></span><span id="SceneChangeRequest::GetRequestSceneC"></span><span class="target" id="class_scene_change_request_1a6b265d87ca6d2dffdcbf2f0130598fc7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetRequestScene</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18SceneChangeRequest15GetRequestSceneEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>変更したいシーン名を取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18SceneChangeRequest18ClearChangeRequestEv">
+<span id="_CPPv3N18SceneChangeRequest18ClearChangeRequestEv"></span><span id="_CPPv2N18SceneChangeRequest18ClearChangeRequestEv"></span><span id="SceneChangeRequest::ClearChangeRequest"></span><span class="target" id="class_scene_change_request_1af2fa62e4bdc44bbda51e42d0ec5d8fba"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ClearChangeRequest</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18SceneChangeRequest18ClearChangeRequestEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンを変更するリクエストをクリア </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18SceneChangeRequest19SetCurrentSceneNameERKNSt6stringE">
+<span id="_CPPv3N18SceneChangeRequest19SetCurrentSceneNameERKNSt6stringE"></span><span id="_CPPv2N18SceneChangeRequest19SetCurrentSceneNameERKNSt6stringE"></span><span id="SceneChangeRequest::SetCurrentSceneName__ssCR"></span><span class="target" id="class_scene_change_request_1af30b1966ddabfd007cc9f515cdc54e96"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetCurrentSceneName</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">currentScene</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18SceneChangeRequest19SetCurrentSceneNameERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>現在のシーン名を設定 </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>currentScene</strong> -- 現在のシーン名</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18SceneChangeRequest19GetCurrentSceneNameEv">
+<span id="_CPPv3NK18SceneChangeRequest19GetCurrentSceneNameEv"></span><span id="_CPPv2NK18SceneChangeRequest19GetCurrentSceneNameEv"></span><span id="SceneChangeRequest::GetCurrentSceneNameC"></span><span class="target" id="class_scene_change_request_1a00f64c7f81ed7aed4e8dcd93ce8141b7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetCurrentSceneName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18SceneChangeRequest19GetCurrentSceneNameEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>現在のシーン名を取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18SceneChangeRequest13SetSceneNamesERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N18SceneChangeRequest13SetSceneNamesERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N18SceneChangeRequest13SetSceneNamesERKNSt6vectorINSt6stringEEE"></span><span id="SceneChangeRequest::SetSceneNames__std::vector:ss:CR"></span><span class="target" id="class_scene_change_request_1aadd750adc4e7bff5775c382b58e983e0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetSceneNames</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sceneName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18SceneChangeRequest13SetSceneNamesERKNSt6vectorINSt6stringEEE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンの名前を取得する </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sceneName</strong> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18SceneChangeRequest13GetSceneNamesEv">
+<span id="_CPPv3NK18SceneChangeRequest13GetSceneNamesEv"></span><span id="_CPPv2NK18SceneChangeRequest13GetSceneNamesEv"></span><span id="SceneChangeRequest::GetSceneNamesC"></span><span class="target" id="class_scene_change_request_1a5af3d77bd571ba7b41e5dd8d7be87523"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetSceneNames</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18SceneChangeRequest13GetSceneNamesEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>登録されているシーン名のリストを取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="scenemanager-h">
+<h2>SceneManager.h<a class="headerlink" href="#scenemanager-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Scene/SceneManager.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManagerE">
+<span id="_CPPv3N10GameEngine12SceneManagerE"></span><span id="_CPPv2N10GameEngine12SceneManagerE"></span><span id="GameEngine::SceneManager"></span><span class="target" id="class_game_engine_1_1_scene_manager"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SceneManager</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManagerE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンの管理 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManager12SceneManagerEv">
+<span id="_CPPv3N10GameEngine12SceneManager12SceneManagerEv"></span><span id="_CPPv2N10GameEngine12SceneManager12SceneManagerEv"></span><span id="GameEngine::SceneManager::SceneManager"></span><span class="target" id="class_game_engine_1_1_scene_manager_1aa598387bda30388762c648c5d1d792fb"></span><span class="sig-name descname"><span class="n"><span class="pre">SceneManager</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManager12SceneManagerEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManagerD0Ev">
+<span id="_CPPv3N10GameEngine12SceneManagerD0Ev"></span><span id="_CPPv2N10GameEngine12SceneManagerD0Ev"></span><span id="GameEngine::SceneManager::~SceneManager"></span><span class="target" id="class_game_engine_1_1_scene_manager_1a812b0305e2809b3194868d7c25bec17e"></span><span class="sig-name descname"><span class="n"><span class="pre">~SceneManager</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManagerD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManager10InitializeEP13SceneRegistryP15GameParamEditorP17GameObjectManagerP23StaticGameObjectManager">
+<span id="_CPPv3N10GameEngine12SceneManager10InitializeEP13SceneRegistryP15GameParamEditorP17GameObjectManagerP23StaticGameObjectManager"></span><span id="_CPPv2N10GameEngine12SceneManager10InitializeEP13SceneRegistryP15GameParamEditorP17GameObjectManagerP23StaticGameObjectManager"></span><span id="GameEngine::SceneManager::Initialize__SceneRegistryP.GameParamEditorP.GameObjectManagerP.StaticGameObjectManagerP"></span><span class="target" id="class_game_engine_1_1_scene_manager_1a917e6f5e2259fe391b009246579e9571"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Initialize</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N10GameEngine13SceneRegistryE" title="GameEngine::SceneRegistry"><span class="n"><span class="pre">SceneRegistry</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">sceneRegistry</span></span>, <a class="reference internal" href="Editor.html#_CPPv4N10GameEngine15GameParamEditorE" title="GameEngine::GameParamEditor"><span class="n"><span class="pre">GameParamEditor</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">gameParamEditor</span></span>, <a class="reference internal" href="Core.html#_CPPv4N10GameEngine17GameObjectManagerE" title="GameEngine::GameObjectManager"><span class="n"><span class="pre">GameObjectManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">gameObjectManager</span></span>, <a class="reference internal" href="Core.html#_CPPv4N10GameEngine23StaticGameObjectManagerE" title="GameEngine::StaticGameObjectManager"><span class="n"><span class="pre">StaticGameObjectManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">staticObjectManager</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManager10InitializeEP13SceneRegistryP15GameParamEditorP17GameObjectManagerP23StaticGameObjectManager" title="Link to this definition">¶</a><br /></dt>
+<dd><p>初期化処理 </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>context</strong> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManager6UpdateEv">
+<span id="_CPPv3N10GameEngine12SceneManager6UpdateEv"></span><span id="_CPPv2N10GameEngine12SceneManager6UpdateEv"></span><span id="GameEngine::SceneManager::Update"></span><span class="target" id="class_game_engine_1_1_scene_manager_1a7e51a9da7a4b7e695bf60a10b54e023d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Update</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManager6UpdateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>更新処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManager16DebugSceneUpdateEv">
+<span id="_CPPv3N10GameEngine12SceneManager16DebugSceneUpdateEv"></span><span id="_CPPv2N10GameEngine12SceneManager16DebugSceneUpdateEv"></span><span id="GameEngine::SceneManager::DebugSceneUpdate"></span><span class="target" id="class_game_engine_1_1_scene_manager_1ad6cb7ac545b77325b8d7681fbb328883"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugSceneUpdate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManager16DebugSceneUpdateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>デバック中でも動かせるようにするシーンの更新処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManager11DebugUpdateEv">
+<span id="_CPPv3N10GameEngine12SceneManager11DebugUpdateEv"></span><span id="_CPPv2N10GameEngine12SceneManager11DebugUpdateEv"></span><span id="GameEngine::SceneManager::DebugUpdate"></span><span class="target" id="class_game_engine_1_1_scene_manager_1a857618b7899af441243fbb64b3ca53aa"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugUpdate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManager11DebugUpdateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>デバック時の更新処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManager4DrawEv">
+<span id="_CPPv3N10GameEngine12SceneManager4DrawEv"></span><span id="_CPPv2N10GameEngine12SceneManager4DrawEv"></span><span id="GameEngine::SceneManager::Draw"></span><span class="target" id="class_game_engine_1_1_scene_manager_1aafaa56cacab2e66b2e4574bc44b430fb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Draw</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManager4DrawEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>描画処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManager11ChangeSceneERKNSt6stringE">
+<span id="_CPPv3N10GameEngine12SceneManager11ChangeSceneERKNSt6stringE"></span><span id="_CPPv2N10GameEngine12SceneManager11ChangeSceneERKNSt6stringE"></span><span id="GameEngine::SceneManager::ChangeScene__ssCR"></span><span class="target" id="class_game_engine_1_1_scene_manager_1a4f6161c0f7470c12e502952f86f283dc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ChangeScene</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sceneName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManager11ChangeSceneERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンの切り替え処理 </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sceneName</strong> -- 切り替え先のシーン名</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12SceneManager17ResetCurrentSceneEv">
+<span id="_CPPv3N10GameEngine12SceneManager17ResetCurrentSceneEv"></span><span id="_CPPv2N10GameEngine12SceneManager17ResetCurrentSceneEv"></span><span id="GameEngine::SceneManager::ResetCurrentScene"></span><span class="target" id="class_game_engine_1_1_scene_manager_1a2271e2202aff78a0bd16722cffc747dd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ResetCurrentScene</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12SceneManager17ResetCurrentSceneEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>現在のシーンをリセットする </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine12SceneManager19GetCurrentSceneNameEv">
+<span id="_CPPv3NK10GameEngine12SceneManager19GetCurrentSceneNameEv"></span><span id="_CPPv2NK10GameEngine12SceneManager19GetCurrentSceneNameEv"></span><span id="GameEngine::SceneManager::GetCurrentSceneNameC"></span><span class="target" id="class_game_engine_1_1_scene_manager_1a4723360e4f3c5c25e4df46a12be0fe31"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetCurrentSceneName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine12SceneManager19GetCurrentSceneNameEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>現在のシーン名を取得する </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="sceneregistry-h">
+<h2>SceneRegistry.h<a class="headerlink" href="#sceneregistry-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Scene/SceneRegistry.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine13SceneRegistryE">
+<span id="_CPPv3N10GameEngine13SceneRegistryE"></span><span id="_CPPv2N10GameEngine13SceneRegistryE"></span><span id="GameEngine::SceneRegistry"></span><span class="target" id="class_game_engine_1_1_scene_registry"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SceneRegistry</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine13SceneRegistryE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンを登録・生成する </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine13SceneRegistry13SceneRegistryEv">
+<span id="_CPPv3N10GameEngine13SceneRegistry13SceneRegistryEv"></span><span id="_CPPv2N10GameEngine13SceneRegistry13SceneRegistryEv"></span><span id="GameEngine::SceneRegistry::SceneRegistry"></span><span class="target" id="class_game_engine_1_1_scene_registry_1aa76b17af3792b155df0ca90b979d9a47"></span><span class="sig-name descname"><span class="n"><span class="pre">SceneRegistry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10GameEngine13SceneRegistry13SceneRegistryEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine13SceneRegistryD0Ev">
+<span id="_CPPv3N10GameEngine13SceneRegistryD0Ev"></span><span id="_CPPv2N10GameEngine13SceneRegistryD0Ev"></span><span id="GameEngine::SceneRegistry::~SceneRegistry"></span><span class="target" id="class_game_engine_1_1_scene_registry_1a821031581cd81fe1d24cbf467a912a41"></span><span class="sig-name descname"><span class="n"><span class="pre">~SceneRegistry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10GameEngine13SceneRegistryD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN10GameEngine13SceneRegistry13RegisterSceneEvRKNSt6stringE">
+<span id="_CPPv3I0EN10GameEngine13SceneRegistry13RegisterSceneERKNSt6stringE"></span><span id="_CPPv2I0EN10GameEngine13SceneRegistry13RegisterSceneERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="class_game_engine_1_1_scene_registry_1ab7b0008a090bd67ca477e48ac10e024a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RegisterScene</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sceneName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN10GameEngine13SceneRegistry13RegisterSceneEvRKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンを登録する </p>
+<dl class="field-list simple">
+<dt class="field-odd">テンプレートパラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> -- ISceneを継承したクラス</p>
+</dd>
+<dt class="field-even">パラメータ<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>sceneName</strong> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine13SceneRegistry11CreateSceneERKNSt6stringE">
+<span id="_CPPv3N10GameEngine13SceneRegistry11CreateSceneERKNSt6stringE"></span><span id="_CPPv2N10GameEngine13SceneRegistry11CreateSceneERKNSt6stringE"></span><span id="GameEngine::SceneRegistry::CreateScene__ssCR"></span><span class="target" id="class_game_engine_1_1_scene_registry_1a55265b9dec21239c1bd68a78aa5e77f2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N10GameEngine6ISceneE" title="GameEngine::IScene"><span class="n"><span class="pre">IScene</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CreateScene</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sceneName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine13SceneRegistry11CreateSceneERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンを生成する </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sceneName</strong> -- シーン名</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine13SceneRegistry8HasSceneERKNSt6stringE">
+<span id="_CPPv3NK10GameEngine13SceneRegistry8HasSceneERKNSt6stringE"></span><span id="_CPPv2NK10GameEngine13SceneRegistry8HasSceneERKNSt6stringE"></span><span id="GameEngine::SceneRegistry::HasScene__ssCRC"></span><span class="target" id="class_game_engine_1_1_scene_registry_1ad41ca2e79a6e61fa49f4c4386a44ea0d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HasScene</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sceneName</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine13SceneRegistry8HasSceneERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>シーンが登録されているか確認する </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sceneName</strong> -- シーン名</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine13SceneRegistry13GetSceneNamesEv">
+<span id="_CPPv3NK10GameEngine13SceneRegistry13GetSceneNamesEv"></span><span id="_CPPv2NK10GameEngine13SceneRegistry13GetSceneNamesEv"></span><span id="GameEngine::SceneRegistry::GetSceneNamesC"></span><span class="target" id="class_game_engine_1_1_scene_registry_1affe1d43c761cf532a2300f3f0908e5e6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetSceneNames</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine13SceneRegistry13GetSceneNamesEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>登録されているシーン名のリストを取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine13SceneRegistry15SetDefaultSceneERKNSt6stringE">
+<span id="_CPPv3N10GameEngine13SceneRegistry15SetDefaultSceneERKNSt6stringE"></span><span id="_CPPv2N10GameEngine13SceneRegistry15SetDefaultSceneERKNSt6stringE"></span><span id="GameEngine::SceneRegistry::SetDefaultScene__ssCR"></span><span class="target" id="class_game_engine_1_1_scene_registry_1a955ee7ea4a9a232055c6927328031a5a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetDefaultScene</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sceneName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine13SceneRegistry15SetDefaultSceneERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>デフォルトシーンを設定する </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sceneName</strong> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine13SceneRegistry15GetDefaultSceneEv">
+<span id="_CPPv3NK10GameEngine13SceneRegistry15GetDefaultSceneEv"></span><span id="_CPPv2NK10GameEngine13SceneRegistry15GetDefaultSceneEv"></span><span id="GameEngine::SceneRegistry::GetDefaultSceneC"></span><span class="target" id="class_game_engine_1_1_scene_registry_1acdeb2318f9c0fd45f6270cfae0d5fe7c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetDefaultScene</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine13SceneRegistry15GetDefaultSceneEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>デフォルトシーン名を取得する </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="scenetransition-h">
+<h2>SceneTransition.h<a class="headerlink" href="#scenetransition-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Scene/SceneTransition.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv415SceneTransition">
+<span id="_CPPv315SceneTransition"></span><span id="_CPPv215SceneTransition"></span><span id="SceneTransition"></span><span class="target" id="class_scene_transition"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SceneTransition</span></span></span><a class="headerlink" href="#_CPPv415SceneTransition" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15SceneTransition10InitializeEv">
+<span id="_CPPv3N15SceneTransition10InitializeEv"></span><span id="_CPPv2N15SceneTransition10InitializeEv"></span><span id="SceneTransition::Initialize"></span><span class="target" id="class_scene_transition_1a3495d6af8ae4027cd2f3d0661fc86f8f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Initialize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15SceneTransition10InitializeEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>初期化処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15SceneTransition6UpdateEv">
+<span id="_CPPv3N15SceneTransition6UpdateEv"></span><span id="_CPPv2N15SceneTransition6UpdateEv"></span><span id="SceneTransition::Update"></span><span class="target" id="class_scene_transition_1aed07fa9ac99e17bc93d0d685a1a71429"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Update</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15SceneTransition6UpdateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>更新処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15SceneTransition4DrawEv">
+<span id="_CPPv3N15SceneTransition4DrawEv"></span><span id="_CPPv2N15SceneTransition4DrawEv"></span><span id="SceneTransition::Draw"></span><span class="target" id="class_scene_transition_1a3a0d11e0aef426175015fa2ff4947be6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Draw</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15SceneTransition4DrawEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>描画処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15SceneTransition5StartENSt10unique_ptrI17ITransitionEffectEE">
+<span id="_CPPv3N15SceneTransition5StartENSt10unique_ptrI17ITransitionEffectEE"></span><span id="_CPPv2N15SceneTransition5StartENSt10unique_ptrI17ITransitionEffectEE"></span><span id="SceneTransition::Start__std::unique_ptr:ITransitionEffect:"></span><span class="target" id="class_scene_transition_1ab9fb7cddfcb69a0897b636b4fa99e424"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Start</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv417ITransitionEffect" title="ITransitionEffect"><span class="n"><span class="pre">ITransitionEffect</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">effect</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15SceneTransition5StartENSt10unique_ptrI17ITransitionEffectEE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>トランジション開始 </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> -- 演出タイプ</p></li>
+<li><p><strong>duration</strong> -- 演出時間（秒）</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK15SceneTransition8IsActiveEv">
+<span id="_CPPv3NK15SceneTransition8IsActiveEv"></span><span id="_CPPv2NK15SceneTransition8IsActiveEv"></span><span id="SceneTransition::IsActiveC"></span><span class="target" id="class_scene_transition_1ab40cc8d373dc94b13c1d5020520b860f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsActive</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK15SceneTransition8IsActiveEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>トランジション中かどうか </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK15SceneTransition15IsMidTransitionEv">
+<span id="_CPPv3NK15SceneTransition15IsMidTransitionEv"></span><span id="_CPPv2NK15SceneTransition15IsMidTransitionEv"></span><span id="SceneTransition::IsMidTransitionC"></span><span class="target" id="class_scene_transition_1a51d9eefa5f510724d4b5987f8097c08c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsMidTransition</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK15SceneTransition15IsMidTransitionEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>フェードアウトが完了したか </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="Math.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Math</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Scene</a><ul>
+<li><a class="reference internal" href="#iscene-h">IScene.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6ISceneE"><code class="docutils literal notranslate"><span class="pre">GameEngine::IScene</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6ISceneD0Ev"><code class="docutils literal notranslate"><span class="pre">~IScene()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene10InitializeEv"><code class="docutils literal notranslate"><span class="pre">Initialize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene6UpdateEv"><code class="docutils literal notranslate"><span class="pre">Update()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene11DebugUpdateEv"><code class="docutils literal notranslate"><span class="pre">DebugUpdate()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene4DrawEv"><code class="docutils literal notranslate"><span class="pre">Draw()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene10IsFinishedEv"><code class="docutils literal notranslate"><span class="pre">IsFinished()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene13NextSceneNameEv"><code class="docutils literal notranslate"><span class="pre">NextSceneName()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene19GetTransitionEffectEv"><code class="docutils literal notranslate"><span class="pre">GetTransitionEffect()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene8SetInputEP5InputP12InputCommand"><code class="docutils literal notranslate"><span class="pre">SetInput()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene18SetResourceManagerEP14TextureManagerP12ModelManagerP16AnimationManagerP17GameObjectManagerP14EffectsManager"><code class="docutils literal notranslate"><span class="pre">SetResourceManager()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene9SetRenderEP20RenderPassControllerP11RenderQueueP17PostEffectManager"><code class="docutils literal notranslate"><span class="pre">SetRender()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine6IScene8SetDebugEP13DebugRenderer"><code class="docutils literal notranslate"><span class="pre">SetDebug()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#itransitioneffect-h">ITransitionEffect.h</a><ul>
+<li><a class="reference internal" href="#_CPPv417ITransitionEffect"><code class="docutils literal notranslate"><span class="pre">ITransitionEffect</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N17ITransitionEffectD0Ev"><code class="docutils literal notranslate"><span class="pre">~ITransitionEffect()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N17ITransitionEffect10InitializeEv"><code class="docutils literal notranslate"><span class="pre">Initialize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N17ITransitionEffect6UpdateEf"><code class="docutils literal notranslate"><span class="pre">Update()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N17ITransitionEffect4DrawEv"><code class="docutils literal notranslate"><span class="pre">Draw()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK17ITransitionEffect15IsMidTransitionEf"><code class="docutils literal notranslate"><span class="pre">IsMidTransition()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N17ITransitionEffect10GetMaxTimeEv"><code class="docutils literal notranslate"><span class="pre">GetMaxTime()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scenechangerequest-h">SceneChangeRequest.h</a><ul>
+<li><a class="reference internal" href="#_CPPv418SceneChangeRequest"><code class="docutils literal notranslate"><span class="pre">SceneChangeRequest</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N18SceneChangeRequest13RequestChangeERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">RequestChange()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK18SceneChangeRequest16HasChangeRequestEv"><code class="docutils literal notranslate"><span class="pre">HasChangeRequest()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK18SceneChangeRequest15GetRequestSceneEv"><code class="docutils literal notranslate"><span class="pre">GetRequestScene()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N18SceneChangeRequest18ClearChangeRequestEv"><code class="docutils literal notranslate"><span class="pre">ClearChangeRequest()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N18SceneChangeRequest19SetCurrentSceneNameERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">SetCurrentSceneName()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK18SceneChangeRequest19GetCurrentSceneNameEv"><code class="docutils literal notranslate"><span class="pre">GetCurrentSceneName()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N18SceneChangeRequest13SetSceneNamesERKNSt6vectorINSt6stringEEE"><code class="docutils literal notranslate"><span class="pre">SetSceneNames()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK18SceneChangeRequest13GetSceneNamesEv"><code class="docutils literal notranslate"><span class="pre">GetSceneNames()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scenemanager-h">SceneManager.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManagerE"><code class="docutils literal notranslate"><span class="pre">GameEngine::SceneManager</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManager12SceneManagerEv"><code class="docutils literal notranslate"><span class="pre">SceneManager()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManagerD0Ev"><code class="docutils literal notranslate"><span class="pre">~SceneManager()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManager10InitializeEP13SceneRegistryP15GameParamEditorP17GameObjectManagerP23StaticGameObjectManager"><code class="docutils literal notranslate"><span class="pre">Initialize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManager6UpdateEv"><code class="docutils literal notranslate"><span class="pre">Update()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManager16DebugSceneUpdateEv"><code class="docutils literal notranslate"><span class="pre">DebugSceneUpdate()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManager11DebugUpdateEv"><code class="docutils literal notranslate"><span class="pre">DebugUpdate()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManager4DrawEv"><code class="docutils literal notranslate"><span class="pre">Draw()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManager11ChangeSceneERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">ChangeScene()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12SceneManager17ResetCurrentSceneEv"><code class="docutils literal notranslate"><span class="pre">ResetCurrentScene()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine12SceneManager19GetCurrentSceneNameEv"><code class="docutils literal notranslate"><span class="pre">GetCurrentSceneName()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sceneregistry-h">SceneRegistry.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine13SceneRegistryE"><code class="docutils literal notranslate"><span class="pre">GameEngine::SceneRegistry</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine13SceneRegistry13SceneRegistryEv"><code class="docutils literal notranslate"><span class="pre">SceneRegistry()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine13SceneRegistryD0Ev"><code class="docutils literal notranslate"><span class="pre">~SceneRegistry()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4I0EN10GameEngine13SceneRegistry13RegisterSceneEvRKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">RegisterScene()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine13SceneRegistry11CreateSceneERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">CreateScene()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine13SceneRegistry8HasSceneERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">HasScene()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine13SceneRegistry13GetSceneNamesEv"><code class="docutils literal notranslate"><span class="pre">GetSceneNames()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine13SceneRegistry15SetDefaultSceneERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">SetDefaultScene()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine13SceneRegistry15GetDefaultSceneEv"><code class="docutils literal notranslate"><span class="pre">GetDefaultScene()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scenetransition-h">SceneTransition.h</a><ul>
+<li><a class="reference internal" href="#_CPPv415SceneTransition"><code class="docutils literal notranslate"><span class="pre">SceneTransition</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N15SceneTransition10InitializeEv"><code class="docutils literal notranslate"><span class="pre">Initialize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N15SceneTransition6UpdateEv"><code class="docutils literal notranslate"><span class="pre">Update()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N15SceneTransition4DrawEv"><code class="docutils literal notranslate"><span class="pre">Draw()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N15SceneTransition5StartENSt10unique_ptrI17ITransitionEffectEE"><code class="docutils literal notranslate"><span class="pre">Start()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK15SceneTransition8IsActiveEv"><code class="docutils literal notranslate"><span class="pre">IsActive()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK15SceneTransition15IsMidTransitionEv"><code class="docutils literal notranslate"><span class="pre">IsMidTransition()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=c033477b"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=4755f45a"></script>
+    </body>
+</html>

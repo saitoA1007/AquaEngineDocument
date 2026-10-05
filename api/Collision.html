@@ -1,0 +1,965 @@
+<!doctype html>
+<html class="no-js" lang="ja" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="検索" href="../search.html"><link rel="next" title="Common" href="Common.html"><link rel="prev" title="Audio" href="Audio.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Collision - AquaEngine</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">AquaEngine</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">AquaEngine</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="検索" name="q" aria-label="検索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">ガイド</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/getting_started.html">はじめに</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">リファレンス</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">APIリファレンス</a><input aria-label="Toggle navigation of APIリファレンス" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2D.html">2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3D.html">3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Collision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Common.html">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Editor.html">Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Graphics.html">Graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Input.html">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scene.html">Scene</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/Collision.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="collision">
+<h1>Collision<a class="headerlink" href="#collision" title="Link to this heading">¶</a></h1>
+<section id="collider-h">
+<h2>Collider.h<a class="headerlink" href="#collider-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Collision/Collider.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8ColliderE">
+<span id="_CPPv3N10GameEngine8ColliderE"></span><span id="_CPPv2N10GameEngine8ColliderE"></span><span id="GameEngine::Collider"></span><span class="target" id="class_game_engine_1_1_collider"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Collider</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine8ColliderE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>当たり判定が持つ基盤の要素 </p>
+<p>Subclassed by <a class="reference internal" href="#class_game_engine_1_1_a_a_b_b_collider"><span class="std std-ref">GameEngine::AABBCollider</span></a>, <a class="reference internal" href="#class_game_engine_1_1_o_b_b_collider"><span class="std std-ref">GameEngine::OBBCollider</span></a>, <a class="reference internal" href="#class_game_engine_1_1_segment_collider"><span class="std std-ref">GameEngine::SegmentCollider</span></a>, <a class="reference internal" href="#class_game_engine_1_1_sphere_collider"><span class="std std-ref">GameEngine::SphereCollider</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider8ColliderEv">
+<span id="_CPPv3N10GameEngine8Collider8ColliderEv"></span><span id="_CPPv2N10GameEngine8Collider8ColliderEv"></span><span id="GameEngine::Collider::Collider"></span><span class="target" id="class_game_engine_1_1_collider_1a8e68f590805940cd27a0d2fc70cd4609"></span><span class="sig-name descname"><span class="n"><span class="pre">Collider</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider8ColliderEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8ColliderD0Ev">
+<span id="_CPPv3N10GameEngine8ColliderD0Ev"></span><span id="_CPPv2N10GameEngine8ColliderD0Ev"></span><span id="GameEngine::Collider::~Collider"></span><span class="target" id="class_game_engine_1_1_collider_1a844c360433085391af8ea7f72fba1436"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Collider</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8ColliderD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine8Collider16GetCollisionDataEv">
+<span id="_CPPv3NK10GameEngine8Collider16GetCollisionDataEv"></span><span id="_CPPv2NK10GameEngine8Collider16GetCollisionDataEv"></span><span id="GameEngine::Collider::GetCollisionDataC"></span><span class="target" id="class_game_engine_1_1_collider_1a3b3ca851c5a3a0781510b76f7a2b4fb9"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine13CollisionDataE" title="GameEngine::CollisionData"><span class="n"><span class="pre">CollisionData</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCollisionData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine8Collider16GetCollisionDataEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine8Collider16GetWorldPositionEv">
+<span id="_CPPv3NK10GameEngine8Collider16GetWorldPositionEv"></span><span id="_CPPv2NK10GameEngine8Collider16GetWorldPositionEv"></span><span id="GameEngine::Collider::GetWorldPositionC"></span><span class="target" id="class_game_engine_1_1_collider_1a0dd2984348335567b7919df23ae9044a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetWorldPosition</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine8Collider16GetWorldPositionEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider16SetWorldPositionERK7Vector3">
+<span id="_CPPv3N10GameEngine8Collider16SetWorldPositionERK7Vector3"></span><span id="_CPPv2N10GameEngine8Collider16SetWorldPositionERK7Vector3"></span><span id="GameEngine::Collider::SetWorldPosition__Vector3CR"></span><span class="target" id="class_game_engine_1_1_collider_1acef479c9fb31a44323acff31c6c6a413"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetWorldPosition</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">position</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider16SetWorldPositionERK7Vector3" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider27SetOnCollisionEnterCallbackENSt8functionIFvRK15CollisionResultEEE">
+<span id="_CPPv3N10GameEngine8Collider27SetOnCollisionEnterCallbackENSt8functionIFvRK15CollisionResultEEE"></span><span id="_CPPv2N10GameEngine8Collider27SetOnCollisionEnterCallbackENSt8functionIFvRK15CollisionResultEEE"></span><span class="target" id="class_game_engine_1_1_collider_1afb330fa5433b2168b606f2238ea09661"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetOnCollisionEnterCallback</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider27SetOnCollisionEnterCallbackENSt8functionIFvRK15CollisionResultEEE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider16OnCollisionEnterERK15CollisionResult">
+<span id="_CPPv3N10GameEngine8Collider16OnCollisionEnterERK15CollisionResult"></span><span id="_CPPv2N10GameEngine8Collider16OnCollisionEnterERK15CollisionResult"></span><span id="GameEngine::Collider::OnCollisionEnter__CollisionResultCR"></span><span class="target" id="class_game_engine_1_1_collider_1aa6c1f6aafc0cb2991d4d4a97a541c1ce"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnCollisionEnter</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">result</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider16OnCollisionEnterERK15CollisionResult" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider22SetOnCollisionCallbackENSt8functionIFvRK15CollisionResultEEE">
+<span id="_CPPv3N10GameEngine8Collider22SetOnCollisionCallbackENSt8functionIFvRK15CollisionResultEEE"></span><span id="_CPPv2N10GameEngine8Collider22SetOnCollisionCallbackENSt8functionIFvRK15CollisionResultEEE"></span><span class="target" id="class_game_engine_1_1_collider_1a4c580c5c310b9bde5d4dc6c1bfd9ff07"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetOnCollisionCallback</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider22SetOnCollisionCallbackENSt8functionIFvRK15CollisionResultEEE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider11OnCollisionERK15CollisionResult">
+<span id="_CPPv3N10GameEngine8Collider11OnCollisionERK15CollisionResult"></span><span id="_CPPv2N10GameEngine8Collider11OnCollisionERK15CollisionResult"></span><span id="GameEngine::Collider::OnCollision__CollisionResultCR"></span><span class="target" id="class_game_engine_1_1_collider_1a61b095591f5ca5318c418b9eeb60029f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnCollision</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">result</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider11OnCollisionERK15CollisionResult" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine8Collider21GetCollisionAttributeEv">
+<span id="_CPPv3NK10GameEngine8Collider21GetCollisionAttributeEv"></span><span id="_CPPv2NK10GameEngine8Collider21GetCollisionAttributeEv"></span><span id="GameEngine::Collider::GetCollisionAttributeC"></span><span class="target" id="class_game_engine_1_1_collider_1a8d071fce63a74a08a67e49bd4826d652"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCollisionAttribute</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine8Collider21GetCollisionAttributeEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider21SetCollisionAttributeERK8uint32_t">
+<span id="_CPPv3N10GameEngine8Collider21SetCollisionAttributeERK8uint32_t"></span><span id="_CPPv2N10GameEngine8Collider21SetCollisionAttributeERK8uint32_t"></span><span id="GameEngine::Collider::SetCollisionAttribute__uint32_tCR"></span><span class="target" id="class_game_engine_1_1_collider_1a7af8b9575874976673cc4de9e90bdbe1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetCollisionAttribute</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">collisionAttribute</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider21SetCollisionAttributeERK8uint32_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine8Collider16GetCollisionMaskEv">
+<span id="_CPPv3NK10GameEngine8Collider16GetCollisionMaskEv"></span><span id="_CPPv2NK10GameEngine8Collider16GetCollisionMaskEv"></span><span id="GameEngine::Collider::GetCollisionMaskC"></span><span class="target" id="class_game_engine_1_1_collider_1adcb7d4bb095e79c0eb658f216dcdc9bc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCollisionMask</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine8Collider16GetCollisionMaskEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider16SetCollisionMaskERK8uint32_t">
+<span id="_CPPv3N10GameEngine8Collider16SetCollisionMaskERK8uint32_t"></span><span id="_CPPv2N10GameEngine8Collider16SetCollisionMaskERK8uint32_t"></span><span id="GameEngine::Collider::SetCollisionMask__uint32_tCR"></span><span class="target" id="class_game_engine_1_1_collider_1a4a74336e963b0eed0a9cb74217ba7f2a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetCollisionMask</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">collisionMask</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider16SetCollisionMaskERK8uint32_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine8Collider8IsActiveEv">
+<span id="_CPPv3NK10GameEngine8Collider8IsActiveEv"></span><span id="_CPPv2NK10GameEngine8Collider8IsActiveEv"></span><span id="GameEngine::Collider::IsActiveC"></span><span class="target" id="class_game_engine_1_1_collider_1a5623fd16117f8618dd262e6e84b575cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsActive</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine8Collider8IsActiveEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider9SetActiveERKb">
+<span id="_CPPv3N10GameEngine8Collider9SetActiveERKb"></span><span id="_CPPv2N10GameEngine8Collider9SetActiveERKb"></span><span id="GameEngine::Collider::SetActive__bCR"></span><span class="target" id="class_game_engine_1_1_collider_1aaadf05585c26bfe138d9a47fa0b5e5f6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetActive</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">isActive</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider9SetActiveERKb" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider11SetUserDataERK8UserData">
+<span id="_CPPv3N10GameEngine8Collider11SetUserDataERK8UserData"></span><span id="_CPPv2N10GameEngine8Collider11SetUserDataERK8UserData"></span><span id="GameEngine::Collider::SetUserData__UserDataCR"></span><span class="target" id="class_game_engine_1_1_collider_1ab252f1bc0cf327976ce3dd36c08f575d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetUserData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine8UserDataE" title="GameEngine::UserData"><span class="n"><span class="pre">UserData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider11SetUserDataERK8UserData" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine8Collider11GetUserDataEv">
+<span id="_CPPv3NK10GameEngine8Collider11GetUserDataEv"></span><span id="_CPPv2NK10GameEngine8Collider11GetUserDataEv"></span><span id="GameEngine::Collider::GetUserDataC"></span><span class="target" id="class_game_engine_1_1_collider_1a8ef298dc898b6cc64414b934df0eb16b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine8UserDataE" title="GameEngine::UserData"><span class="n"><span class="pre">UserData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetUserData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine8Collider11GetUserDataEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8Collider16StaticInitializeEP16CollisionManager">
+<span id="_CPPv3N10GameEngine8Collider16StaticInitializeEP16CollisionManager"></span><span id="_CPPv2N10GameEngine8Collider16StaticInitializeEP16CollisionManager"></span><span id="GameEngine::Collider::StaticInitialize__CollisionManagerP"></span><span class="target" id="class_game_engine_1_1_collider_1a4cf50fd42929eb4dbb927e973194b9a4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StaticInitialize</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManagerE" title="GameEngine::CollisionManager"><span class="n"><span class="pre">CollisionManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">manager</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine8Collider16StaticInitializeEP16CollisionManager" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine14SphereColliderE">
+<span id="_CPPv3N10GameEngine14SphereColliderE"></span><span id="_CPPv2N10GameEngine14SphereColliderE"></span><span id="GameEngine::SphereCollider"></span><span class="target" id="class_game_engine_1_1_sphere_collider"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SphereCollider</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">GameEngine</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE" title="GameEngine::Collider"><span class="n"><span class="pre">Collider</span></span></a><a class="headerlink" href="#_CPPv4N10GameEngine14SphereColliderE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>球の当たり判定 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine14SphereCollider16GetCollisionDataEv">
+<span id="_CPPv3NK10GameEngine14SphereCollider16GetCollisionDataEv"></span><span id="_CPPv2NK10GameEngine14SphereCollider16GetCollisionDataEv"></span><span id="GameEngine::SphereCollider::GetCollisionDataC"></span><span class="target" id="class_game_engine_1_1_sphere_collider_1a1f9432604e5ba5696d289f5ec7f85b1b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine13CollisionDataE" title="GameEngine::CollisionData"><span class="n"><span class="pre">CollisionData</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCollisionData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine14SphereCollider16GetCollisionDataEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine14SphereCollider9GetRadiusEv">
+<span id="_CPPv3NK10GameEngine14SphereCollider9GetRadiusEv"></span><span id="_CPPv2NK10GameEngine14SphereCollider9GetRadiusEv"></span><span id="GameEngine::SphereCollider::GetRadiusC"></span><span class="target" id="class_game_engine_1_1_sphere_collider_1a0745a6b3454eb4ffea2bf0ee5877eb2a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetRadius</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine14SphereCollider9GetRadiusEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine14SphereCollider9SetRadiusERKf">
+<span id="_CPPv3N10GameEngine14SphereCollider9SetRadiusERKf"></span><span id="_CPPv2N10GameEngine14SphereCollider9SetRadiusERKf"></span><span id="GameEngine::SphereCollider::SetRadius__floatCR"></span><span class="target" id="class_game_engine_1_1_sphere_collider_1a1dda81715da65821c22e2de9317df70e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetRadius</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">radius</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine14SphereCollider9SetRadiusERKf" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12AABBColliderE">
+<span id="_CPPv3N10GameEngine12AABBColliderE"></span><span id="_CPPv2N10GameEngine12AABBColliderE"></span><span id="GameEngine::AABBCollider"></span><span class="target" id="class_game_engine_1_1_a_a_b_b_collider"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AABBCollider</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">GameEngine</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE" title="GameEngine::Collider"><span class="n"><span class="pre">Collider</span></span></a><a class="headerlink" href="#_CPPv4N10GameEngine12AABBColliderE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>AABBの当たり判定 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine12AABBCollider16GetCollisionDataEv">
+<span id="_CPPv3NK10GameEngine12AABBCollider16GetCollisionDataEv"></span><span id="_CPPv2NK10GameEngine12AABBCollider16GetCollisionDataEv"></span><span id="GameEngine::AABBCollider::GetCollisionDataC"></span><span class="target" id="class_game_engine_1_1_a_a_b_b_collider_1a06383fbcadc617dc968c43e8a2a4ff3e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine13CollisionDataE" title="GameEngine::CollisionData"><span class="n"><span class="pre">CollisionData</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCollisionData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine12AABBCollider16GetCollisionDataEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine12AABBCollider7GetSizeEv">
+<span id="_CPPv3NK10GameEngine12AABBCollider7GetSizeEv"></span><span id="_CPPv2NK10GameEngine12AABBCollider7GetSizeEv"></span><span id="GameEngine::AABBCollider::GetSizeC"></span><span class="target" id="class_game_engine_1_1_a_a_b_b_collider_1a095c2e76eb61a6910f70e77fff4eadf6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine12AABBCollider7GetSizeEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12AABBCollider7SetSizeERK7Vector3">
+<span id="_CPPv3N10GameEngine12AABBCollider7SetSizeERK7Vector3"></span><span id="_CPPv2N10GameEngine12AABBCollider7SetSizeERK7Vector3"></span><span id="GameEngine::AABBCollider::SetSize__Vector3CR"></span><span class="target" id="class_game_engine_1_1_a_a_b_b_collider_1adda2a8c827a56fa286cc7d7979bbb429"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetSize</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12AABBCollider7SetSizeERK7Vector3" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine12AABBCollider14GetAnchorPointEv">
+<span id="_CPPv3NK10GameEngine12AABBCollider14GetAnchorPointEv"></span><span id="_CPPv2NK10GameEngine12AABBCollider14GetAnchorPointEv"></span><span id="GameEngine::AABBCollider::GetAnchorPointC"></span><span class="target" id="class_game_engine_1_1_a_a_b_b_collider_1a30ab38e41b638dda8007f0f3ac5beca4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetAnchorPoint</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine12AABBCollider14GetAnchorPointEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12AABBCollider14SetAnchorPointERK7Vector3">
+<span id="_CPPv3N10GameEngine12AABBCollider14SetAnchorPointERK7Vector3"></span><span id="_CPPv2N10GameEngine12AABBCollider14SetAnchorPointERK7Vector3"></span><span id="GameEngine::AABBCollider::SetAnchorPoint__Vector3CR"></span><span class="target" id="class_game_engine_1_1_a_a_b_b_collider_1a484e35ec6e75b0cd6266847e0a642e9e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetAnchorPoint</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">anchorPoint</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12AABBCollider14SetAnchorPointERK7Vector3" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine15SegmentColliderE">
+<span id="_CPPv3N10GameEngine15SegmentColliderE"></span><span id="_CPPv2N10GameEngine15SegmentColliderE"></span><span id="GameEngine::SegmentCollider"></span><span class="target" id="class_game_engine_1_1_segment_collider"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SegmentCollider</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">GameEngine</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE" title="GameEngine::Collider"><span class="n"><span class="pre">Collider</span></span></a><a class="headerlink" href="#_CPPv4N10GameEngine15SegmentColliderE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>線分の当たり判定 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine15SegmentCollider16GetCollisionDataEv">
+<span id="_CPPv3NK10GameEngine15SegmentCollider16GetCollisionDataEv"></span><span id="_CPPv2NK10GameEngine15SegmentCollider16GetCollisionDataEv"></span><span id="GameEngine::SegmentCollider::GetCollisionDataC"></span><span class="target" id="class_game_engine_1_1_segment_collider_1a17701aecc52b990b2f5c27e881f013e1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine13CollisionDataE" title="GameEngine::CollisionData"><span class="n"><span class="pre">CollisionData</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCollisionData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine15SegmentCollider16GetCollisionDataEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine15SegmentCollider7GetDiffEv">
+<span id="_CPPv3NK10GameEngine15SegmentCollider7GetDiffEv"></span><span id="_CPPv2NK10GameEngine15SegmentCollider7GetDiffEv"></span><span id="GameEngine::SegmentCollider::GetDiffC"></span><span class="target" id="class_game_engine_1_1_segment_collider_1aca2571f2615aeecd1922ee6cba8f767f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetDiff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine15SegmentCollider7GetDiffEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine15SegmentCollider7SetDiffERK7Vector3">
+<span id="_CPPv3N10GameEngine15SegmentCollider7SetDiffERK7Vector3"></span><span id="_CPPv2N10GameEngine15SegmentCollider7SetDiffERK7Vector3"></span><span id="GameEngine::SegmentCollider::SetDiff__Vector3CR"></span><span class="target" id="class_game_engine_1_1_segment_collider_1ae959cd4b7439006a0efddaaebf39a288"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetDiff</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">diff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine15SegmentCollider7SetDiffERK7Vector3" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine11OBBColliderE">
+<span id="_CPPv3N10GameEngine11OBBColliderE"></span><span id="_CPPv2N10GameEngine11OBBColliderE"></span><span id="GameEngine::OBBCollider"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OBBCollider</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">GameEngine</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE" title="GameEngine::Collider"><span class="n"><span class="pre">Collider</span></span></a><a class="headerlink" href="#_CPPv4N10GameEngine11OBBColliderE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>OBBの当たり判定 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine11OBBCollider16GetCollisionDataEv">
+<span id="_CPPv3NK10GameEngine11OBBCollider16GetCollisionDataEv"></span><span id="_CPPv2NK10GameEngine11OBBCollider16GetCollisionDataEv"></span><span id="GameEngine::OBBCollider::GetCollisionDataC"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider_1a72a84d62da728b04fe5ca33320f84cbd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine13CollisionDataE" title="GameEngine::CollisionData"><span class="n"><span class="pre">CollisionData</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCollisionData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine11OBBCollider16GetCollisionDataEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine11OBBCollider15SetOrientationsEAL3E_7Vector3">
+<span id="_CPPv3N10GameEngine11OBBCollider15SetOrientationsEAL3E_7Vector3"></span><span id="_CPPv2N10GameEngine11OBBCollider15SetOrientationsEA3_7Vector3"></span><span id="GameEngine::OBBCollider::SetOrientations__Vector3A"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider_1ac28cf505de3c16a22afc0eafdbee9f45"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetOrientations</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">orientations</span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">3</span></span><span class="p"><span class="pre">]</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine11OBBCollider15SetOrientationsEAL3E_7Vector3" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine11OBBCollider15GetOrientationsEv">
+<span id="_CPPv3NK10GameEngine11OBBCollider15GetOrientationsEv"></span><span id="_CPPv2NK10GameEngine11OBBCollider15GetOrientationsEv"></span><span id="GameEngine::OBBCollider::GetOrientationsC"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider_1af9019a84855d2ce4ea320fa74b5b7330"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetOrientations</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine11OBBCollider15GetOrientationsEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine11OBBCollider28UpdateOrientationsFromRotateERK7Vector3">
+<span id="_CPPv3N10GameEngine11OBBCollider28UpdateOrientationsFromRotateERK7Vector3"></span><span id="_CPPv2N10GameEngine11OBBCollider28UpdateOrientationsFromRotateERK7Vector3"></span><span id="GameEngine::OBBCollider::UpdateOrientationsFromRotate__Vector3CR"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider_1a4864b8737716c811026e50323a7b0844"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UpdateOrientationsFromRotate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rotate</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine11OBBCollider28UpdateOrientationsFromRotateERK7Vector3" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine11OBBCollider7SetSizeERK7Vector3">
+<span id="_CPPv3N10GameEngine11OBBCollider7SetSizeERK7Vector3"></span><span id="_CPPv2N10GameEngine11OBBCollider7SetSizeERK7Vector3"></span><span id="GameEngine::OBBCollider::SetSize__Vector3CR"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider_1ad2d3f3e0ea354a3d0951691044ba9949"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetSize</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine11OBBCollider7SetSizeERK7Vector3" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine11OBBCollider7GetSizeEv">
+<span id="_CPPv3NK10GameEngine11OBBCollider7GetSizeEv"></span><span id="_CPPv2NK10GameEngine11OBBCollider7GetSizeEv"></span><span id="GameEngine::OBBCollider::GetSizeC"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider_1a292da050825076267ea3d943a1cc1f4b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine11OBBCollider7GetSizeEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine11OBBCollider9SetAnchorERK7Vector3">
+<span id="_CPPv3N10GameEngine11OBBCollider9SetAnchorERK7Vector3"></span><span id="_CPPv2N10GameEngine11OBBCollider9SetAnchorERK7Vector3"></span><span id="GameEngine::OBBCollider::SetAnchor__Vector3CR"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider_1a1e48ab88d9c528fdaebc9b19399d0f30"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetAnchor</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">anchor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine11OBBCollider9SetAnchorERK7Vector3" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine11OBBCollider9GetAnchorEv">
+<span id="_CPPv3NK10GameEngine11OBBCollider9GetAnchorEv"></span><span id="_CPPv2NK10GameEngine11OBBCollider9GetAnchorEv"></span><span id="GameEngine::OBBCollider::GetAnchorC"></span><span class="target" id="class_game_engine_1_1_o_b_b_collider_1a3dd8b771f6aebf8f7e43c171dbc36359"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetAnchor</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine11OBBCollider9GetAnchorEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="colliderinfo-h">
+<h2>ColliderInfo.h<a class="headerlink" href="#colliderinfo-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Collision/ColliderInfo.h</span></code></p>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine17ColliderShapeDataE">
+<span id="_CPPv3N10GameEngine17ColliderShapeDataE"></span><span id="_CPPv2N10GameEngine17ColliderShapeDataE"></span><span id="GameEngine::ColliderShapeData"></span><span class="target" id="struct_game_engine_1_1_collider_shape_data"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ColliderShapeData</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine17ColliderShapeDataE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine17ColliderShapeData4typeE">
+<span id="_CPPv3N10GameEngine17ColliderShapeData4typeE"></span><span id="_CPPv2N10GameEngine17ColliderShapeData4typeE"></span><span id="GameEngine::ColliderShapeData::type__ShapeType"></span><span class="target" id="struct_game_engine_1_1_collider_shape_data_1a4cf15dc06c68aef83b8808d343d40295"></span><span class="n"><span class="pre">ShapeType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">ShapeType</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">kSphere</span></span><a class="headerlink" href="#_CPPv4N10GameEngine17ColliderShapeData4typeE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine17ColliderShapeData6radiusE">
+<span id="_CPPv3N10GameEngine17ColliderShapeData6radiusE"></span><span id="_CPPv2N10GameEngine17ColliderShapeData6radiusE"></span><span id="GameEngine::ColliderShapeData::radius__float"></span><span class="target" id="struct_game_engine_1_1_collider_shape_data_1a27a849a78f5657e0c4e13fe2b4b51472"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">radius</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span><a class="headerlink" href="#_CPPv4N10GameEngine17ColliderShapeData6radiusE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine17ColliderShapeData11anchorPointE">
+<span id="_CPPv3N10GameEngine17ColliderShapeData11anchorPointE"></span><span id="_CPPv2N10GameEngine17ColliderShapeData11anchorPointE"></span><span id="GameEngine::ColliderShapeData::anchorPoint__Vector3"></span><span class="target" id="struct_game_engine_1_1_collider_shape_data_1a20fbfb06bc8df0c68e0505b7c53c50fb"></span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">anchorPoint</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0.5f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.5f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.5f</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N10GameEngine17ColliderShapeData11anchorPointE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine17ColliderShapeData6rotateE">
+<span id="_CPPv3N10GameEngine17ColliderShapeData6rotateE"></span><span id="_CPPv2N10GameEngine17ColliderShapeData6rotateE"></span><span id="GameEngine::ColliderShapeData::rotate__Vector3"></span><span class="target" id="struct_game_engine_1_1_collider_shape_data_1a754b41b818fa66ed1590871f1dc11a28"></span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rotate</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N10GameEngine17ColliderShapeData6rotateE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine17ColliderShapeData7boxSizeE">
+<span id="_CPPv3N10GameEngine17ColliderShapeData7boxSizeE"></span><span id="_CPPv2N10GameEngine17ColliderShapeData7boxSizeE"></span><span id="GameEngine::ColliderShapeData::boxSize__Vector3"></span><span class="target" id="struct_game_engine_1_1_collider_shape_data_1a9bfc454400eb1876584cd32f3c123dd6"></span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">boxSize</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">1.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N10GameEngine17ColliderShapeData7boxSizeE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine13CollisionDataE">
+<span id="_CPPv3N10GameEngine13CollisionDataE"></span><span id="_CPPv2N10GameEngine13CollisionDataE"></span><span id="GameEngine::CollisionData"></span><span class="target" id="struct_game_engine_1_1_collision_data"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CollisionData</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine13CollisionDataE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK10GameEngine13CollisionData3GetEPK1Tv">
+<span id="_CPPv3I0ENK10GameEngine13CollisionData3GetEv"></span><span id="_CPPv2I0ENK10GameEngine13CollisionData3GetEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="struct_game_engine_1_1_collision_data_1a38481bc8af5d42439d98209daa7178db"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10GameEngine13CollisionData3GetEPK1Tv" title="GameEngine::CollisionData::Get::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK10GameEngine13CollisionData3GetEPK1Tv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN10GameEngine13CollisionData3GetEP1Tv">
+<span id="_CPPv3I0EN10GameEngine13CollisionData3GetEv"></span><span id="_CPPv2I0EN10GameEngine13CollisionData3GetEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="struct_game_engine_1_1_collision_data_1af7bce0b4869d89cfc181cb67dec1c755"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN10GameEngine13CollisionData3GetEP1Tv" title="GameEngine::CollisionData::Get::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN10GameEngine13CollisionData3GetEP1Tv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine13CollisionData4dataE">
+<span id="_CPPv3N10GameEngine13CollisionData4dataE"></span><span id="_CPPv2N10GameEngine13CollisionData4dataE"></span><span id="GameEngine::CollisionData::data__std::variant:Sphere.AABB.OBB.Segment:"></span><span class="target" id="struct_game_engine_1_1_collision_data_1ac38239ef14d9d688debc59b6e7ca3782"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">variant</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="Math.html#_CPPv46Sphere" title="Sphere"><span class="n"><span class="pre">Sphere</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv44AABB" title="AABB"><span class="n"><span class="pre">AABB</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv43OBB" title="OBB"><span class="n"><span class="pre">OBB</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Segment" title="Segment"><span class="n"><span class="pre">Segment</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine13CollisionData4dataE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine13CollisionData9shapeTypeE">
+<span id="_CPPv3N10GameEngine13CollisionData9shapeTypeE"></span><span id="_CPPv2N10GameEngine13CollisionData9shapeTypeE"></span><span id="GameEngine::CollisionData::shapeType__ShapeType"></span><span class="target" id="struct_game_engine_1_1_collision_data_1af18a91790a42c2979f8f1ed4ad1a299a"></span><span class="n"><span class="pre">ShapeType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shapeType</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine13CollisionData9shapeTypeE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="collisionmanager-h">
+<h2>CollisionManager.h<a class="headerlink" href="#collisionmanager-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Collision/CollisionManager.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManagerE">
+<span id="_CPPv3N10GameEngine16CollisionManagerE"></span><span id="_CPPv2N10GameEngine16CollisionManagerE"></span><span id="GameEngine::CollisionManager"></span><span class="target" id="class_game_engine_1_1_collision_manager"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CollisionManager</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManagerE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManager16CollisionManagerEv">
+<span id="_CPPv3N10GameEngine16CollisionManager16CollisionManagerEv"></span><span id="_CPPv2N10GameEngine16CollisionManager16CollisionManagerEv"></span><span id="GameEngine::CollisionManager::CollisionManager"></span><span class="target" id="class_game_engine_1_1_collision_manager_1aceb9912f2a8cea0c048b6f0f3aa6031d"></span><span class="sig-name descname"><span class="n"><span class="pre">CollisionManager</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManager16CollisionManagerEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManagerD0Ev">
+<span id="_CPPv3N10GameEngine16CollisionManagerD0Ev"></span><span id="_CPPv2N10GameEngine16CollisionManagerD0Ev"></span><span id="GameEngine::CollisionManager::~CollisionManager"></span><span class="target" id="class_game_engine_1_1_collision_manager_1a62b1a1210f4fbcecee3f49beb12a6a7b"></span><span class="sig-name descname"><span class="n"><span class="pre">~CollisionManager</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManagerD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManager18CheckAllCollisionsEv">
+<span id="_CPPv3N10GameEngine16CollisionManager18CheckAllCollisionsEv"></span><span id="_CPPv2N10GameEngine16CollisionManager18CheckAllCollisionsEv"></span><span id="GameEngine::CollisionManager::CheckAllCollisions"></span><span class="target" id="class_game_engine_1_1_collision_manager_1acec855e79ea81cb00c384d7da0d673ab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CheckAllCollisions</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManager18CheckAllCollisionsEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>全ての当たり判定を行う </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManager9ClearListEv">
+<span id="_CPPv3N10GameEngine16CollisionManager9ClearListEv"></span><span id="_CPPv2N10GameEngine16CollisionManager9ClearListEv"></span><span id="GameEngine::CollisionManager::ClearList"></span><span class="target" id="class_game_engine_1_1_collision_manager_1ac6b8f20e4870b318d33105b60d2eeffb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ClearList</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManager9ClearListEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>コライダーリストをクリアする </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManager11AddColliderEP8Collider">
+<span id="_CPPv3N10GameEngine16CollisionManager11AddColliderEP8Collider"></span><span id="_CPPv2N10GameEngine16CollisionManager11AddColliderEP8Collider"></span><span id="GameEngine::CollisionManager::AddCollider__ColliderP"></span><span class="target" id="class_game_engine_1_1_collision_manager_1a4d0f7788b5813611efa5e8dcb8468b0b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AddCollider</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE" title="GameEngine::Collider"><span class="n"><span class="pre">Collider</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">collider</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManager11AddColliderEP8Collider" title="Link to this definition">¶</a><br /></dt>
+<dd><p>コライダーをリストに追加する </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>collider</strong> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManager14RemoveColliderEP8Collider">
+<span id="_CPPv3N10GameEngine16CollisionManager14RemoveColliderEP8Collider"></span><span id="_CPPv2N10GameEngine16CollisionManager14RemoveColliderEP8Collider"></span><span id="GameEngine::CollisionManager::RemoveCollider__ColliderP"></span><span class="target" id="class_game_engine_1_1_collision_manager_1adeace97d4e4891f3722258235a7ee0b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RemoveCollider</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE" title="GameEngine::Collider"><span class="n"><span class="pre">Collider</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">collider</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManager14RemoveColliderEP8Collider" title="Link to this definition">¶</a><br /></dt>
+<dd><p>コライダーをリストと履歴から削除する </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManager9DebugDrawEP13DebugRenderer">
+<span id="_CPPv3N10GameEngine16CollisionManager9DebugDrawEP13DebugRenderer"></span><span id="_CPPv2N10GameEngine16CollisionManager9DebugDrawEP13DebugRenderer"></span><span id="GameEngine::CollisionManager::DebugDraw__DebugRendererP"></span><span class="target" id="class_game_engine_1_1_collision_manager_1a099b83e3cc18274e75107de4af039e47"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugDraw</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="3D.html#_CPPv4N10GameEngine13DebugRendererE" title="GameEngine::DebugRenderer"><span class="n"><span class="pre">DebugRenderer</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">debugRenderer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManager9DebugDrawEP13DebugRenderer" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionManager8PairHashE">
+<span id="_CPPv3N10GameEngine16CollisionManager8PairHashE"></span><span id="_CPPv2N10GameEngine16CollisionManager8PairHashE"></span><span id="GameEngine::CollisionManager::PairHash"></span><span class="target" id="struct_game_engine_1_1_collision_manager_1_1_pair_hash"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PairHash</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionManager8PairHashE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionManager8PairHashclERKNSt4pairIP8ColliderP8ColliderEE">
+<span id="_CPPv3NK10GameEngine16CollisionManager8PairHashclERKNSt4pairIP8ColliderP8ColliderEE"></span><span id="_CPPv2NK10GameEngine16CollisionManager8PairHashclERKNSt4pairIP8ColliderP8ColliderEE"></span><span id="GameEngine::CollisionManager::PairHash::call-operator__std::pair:ColliderP.ColliderP:CRC"></span><span class="target" id="struct_game_engine_1_1_collision_manager_1_1_pair_hash_1a1425ab73823d53786f06bff3b7ea3d20"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE" title="GameEngine::Collider"><span class="n"><span class="pre">Collider</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE" title="GameEngine::Collider"><span class="n"><span class="pre">Collider</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">p</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionManager8PairHashclERKNSt4pairIP8ColliderP8ColliderEE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="collisionresult-h">
+<h2>CollisionResult.h<a class="headerlink" href="#collisionresult-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Collision/CollisionResult.h</span></code></p>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine15CollisionResultE">
+<span id="_CPPv3N10GameEngine15CollisionResultE"></span><span id="_CPPv2N10GameEngine15CollisionResultE"></span><span id="GameEngine::CollisionResult"></span><span class="target" id="struct_game_engine_1_1_collision_result"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CollisionResult</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine15CollisionResultE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine15CollisionResult5isHitE">
+<span id="_CPPv3N10GameEngine15CollisionResult5isHitE"></span><span id="_CPPv2N10GameEngine15CollisionResult5isHitE"></span><span id="GameEngine::CollisionResult::isHit__b"></span><span class="target" id="struct_game_engine_1_1_collision_result_1a715e89cb58ef91f00429a47edbcc97bd"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isHit</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N10GameEngine15CollisionResult5isHitE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine15CollisionResult15contactPositionE">
+<span id="_CPPv3N10GameEngine15CollisionResult15contactPositionE"></span><span id="_CPPv2N10GameEngine15CollisionResult15contactPositionE"></span><span id="GameEngine::CollisionResult::contactPosition__Vector3"></span><span class="target" id="struct_game_engine_1_1_collision_result_1ae831b0dbfca2ae2ce70e2a4e6c2121df"></span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">contactPosition</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N10GameEngine15CollisionResult15contactPositionE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine15CollisionResult13contactNormalE">
+<span id="_CPPv3N10GameEngine15CollisionResult13contactNormalE"></span><span id="_CPPv2N10GameEngine15CollisionResult13contactNormalE"></span><span id="GameEngine::CollisionResult::contactNormal__Vector3"></span><span class="target" id="struct_game_engine_1_1_collision_result_1aefbf06e9e451b7aec033ac9ef16feace"></span><a class="reference internal" href="Math.html#_CPPv47Vector3" title="Vector3"><span class="n"><span class="pre">Vector3</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">contactNormal</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N10GameEngine15CollisionResult13contactNormalE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine15CollisionResult16penetrationDepthE">
+<span id="_CPPv3N10GameEngine15CollisionResult16penetrationDepthE"></span><span id="_CPPv2N10GameEngine15CollisionResult16penetrationDepthE"></span><span id="GameEngine::CollisionResult::penetrationDepth__float"></span><span class="target" id="struct_game_engine_1_1_collision_result_1a4cca9f73599401c5003d5a71e9e0b1e2"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">penetrationDepth</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><a class="headerlink" href="#_CPPv4N10GameEngine15CollisionResult16penetrationDepthE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine15CollisionResult8userDataE">
+<span id="_CPPv3N10GameEngine15CollisionResult8userDataE"></span><span id="_CPPv2N10GameEngine15CollisionResult8userDataE"></span><span id="GameEngine::CollisionResult::userData__UserData"></span><span class="target" id="struct_game_engine_1_1_collision_result_1a6b4aba52b07b7bd3ec77f0e9336f136b"></span><a class="reference internal" href="#_CPPv4N10GameEngine8UserDataE" title="GameEngine::UserData"><span class="n"><span class="pre">UserData</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">userData</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine15CollisionResult8userDataE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="collisionvisitor-h">
+<h2>CollisionVisitor.h<a class="headerlink" href="#collisionvisitor-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Collision/CollisionVisitor.h</span></code></p>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine16CollisionVisitorE">
+<span id="_CPPv3N10GameEngine16CollisionVisitorE"></span><span id="_CPPv2N10GameEngine16CollisionVisitorE"></span><span id="GameEngine::CollisionVisitor"></span><span class="target" id="struct_game_engine_1_1_collision_visitor"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CollisionVisitor</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine16CollisionVisitorE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>当たり判定の組み合わせを設定する </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK6Sphere">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK6SphereRK6Sphere"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK6SphereRK6Sphere"></span><span id="GameEngine::CollisionVisitor::call-operator__SphereCR.SphereCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1afcf936715d88ec155d3331d8906c387c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv46Sphere" title="Sphere"><span class="n"><span class="pre">Sphere</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv46Sphere" title="Sphere"><span class="n"><span class="pre">Sphere</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK6Sphere" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK4AABB">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK4AABBRK4AABB"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK4AABBRK4AABB"></span><span id="GameEngine::CollisionVisitor::call-operator__AABBCR.AABBCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1a0f3076d3f637d441c49638cddef1b7c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv44AABB" title="AABB"><span class="n"><span class="pre">AABB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv44AABB" title="AABB"><span class="n"><span class="pre">AABB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK4AABB" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK4AABB">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK6SphereRK4AABB"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK6SphereRK4AABB"></span><span id="GameEngine::CollisionVisitor::call-operator__SphereCR.AABBCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1aeb898f45ff09c12a5e9c1149a638e08b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv46Sphere" title="Sphere"><span class="n"><span class="pre">Sphere</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv44AABB" title="AABB"><span class="n"><span class="pre">AABB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK4AABB" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK6Sphere">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK4AABBRK6Sphere"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK4AABBRK6Sphere"></span><span id="GameEngine::CollisionVisitor::call-operator__AABBCR.SphereCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1a25b1ca0dc22b868cfdb20b33442a75d8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv44AABB" title="AABB"><span class="n"><span class="pre">AABB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv46Sphere" title="Sphere"><span class="n"><span class="pre">Sphere</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK6Sphere" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK7Segment">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK4AABBRK7Segment"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK4AABBRK7Segment"></span><span id="GameEngine::CollisionVisitor::call-operator__AABBCR.SegmentCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1ac29e4fdcd6cae3dcafc403f3f68f0b3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv44AABB" title="AABB"><span class="n"><span class="pre">AABB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Segment" title="Segment"><span class="n"><span class="pre">Segment</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK7Segment" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK7SegmentRK4AABB">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK7SegmentRK4AABB"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK7SegmentRK4AABB"></span><span id="GameEngine::CollisionVisitor::call-operator__SegmentCR.AABBCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1ad3b84494f037b5d4beb4bc1532f02ff8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Segment" title="Segment"><span class="n"><span class="pre">Segment</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv44AABB" title="AABB"><span class="n"><span class="pre">AABB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK7SegmentRK4AABB" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK3OBBRK6Sphere">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK3OBBRK6Sphere"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK3OBBRK6Sphere"></span><span id="GameEngine::CollisionVisitor::call-operator__OBBCR.SphereCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1a508eab9c922c3790db8ff053b83a1a81"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv43OBB" title="OBB"><span class="n"><span class="pre">OBB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv46Sphere" title="Sphere"><span class="n"><span class="pre">Sphere</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK3OBBRK6Sphere" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK3OBB">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK6SphereRK3OBB"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK6SphereRK3OBB"></span><span id="GameEngine::CollisionVisitor::call-operator__SphereCR.OBBCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1ae4dde5b5b4ba67cc5918e37d37412468"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv46Sphere" title="Sphere"><span class="n"><span class="pre">Sphere</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv43OBB" title="OBB"><span class="n"><span class="pre">OBB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK3OBB" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine16CollisionVisitorclERK3OBBRK7Segment">
+<span id="_CPPv3NK10GameEngine16CollisionVisitorclERK3OBBRK7Segment"></span><span id="_CPPv2NK10GameEngine16CollisionVisitorclERK3OBBRK7Segment"></span><span id="GameEngine::CollisionVisitor::call-operator__OBBCR.SegmentCRC"></span><span class="target" id="struct_game_engine_1_1_collision_visitor_1a715670fe4f5744b877cce3f982ca99d5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv43OBB" title="OBB"><span class="n"><span class="pre">OBB</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Segment" title="Segment"><span class="n"><span class="pre">Segment</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK3OBBRK7Segment" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00ENK10GameEngine16CollisionVisitorclE15CollisionResultRK1TRK1U">
+<span id="_CPPv3I00ENK10GameEngine16CollisionVisitorclERK1TRK1U"></span><span id="_CPPv2I00ENK10GameEngine16CollisionVisitorclERK1TRK1U"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">U</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="struct_game_engine_1_1_collision_visitor_1ab61da6871255364144b404475aebb6b8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE" title="GameEngine::CollisionResult"><span class="n"><span class="pre">CollisionResult</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00ENK10GameEngine16CollisionVisitorclE15CollisionResultRK1TRK1U" title="GameEngine::CollisionVisitor::operator()::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00ENK10GameEngine16CollisionVisitorclE15CollisionResultRK1TRK1U" title="GameEngine::CollisionVisitor::operator()::U"><span class="n"><span class="pre">U</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I00ENK10GameEngine16CollisionVisitorclE15CollisionResultRK1TRK1U" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="userdata-h">
+<h2>UserData.h<a class="headerlink" href="#userdata-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Collision/UserData.h</span></code></p>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8UserDataE">
+<span id="_CPPv3N10GameEngine8UserDataE"></span><span id="_CPPv2N10GameEngine8UserDataE"></span><span id="GameEngine::UserData"></span><span class="target" id="struct_game_engine_1_1_user_data"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UserData</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine8UserDataE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK10GameEngine8UserData2AsEP1Tv">
+<span id="_CPPv3I0ENK10GameEngine8UserData2AsEv"></span><span id="_CPPv2I0ENK10GameEngine8UserData2AsEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="struct_game_engine_1_1_user_data_1a60b7ddeed91c9ee65c3d644a50aa31bd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10GameEngine8UserData2AsEP1Tv" title="GameEngine::UserData::As::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">As</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK10GameEngine8UserData2AsEP1Tv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine8UserData8IsActiveEv">
+<span id="_CPPv3NK10GameEngine8UserData8IsActiveEv"></span><span id="_CPPv2NK10GameEngine8UserData8IsActiveEv"></span><span id="GameEngine::UserData::IsActiveC"></span><span class="target" id="struct_game_engine_1_1_user_data_1a6372cbbe47ecfc8b9367bfe927dc9853"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsActive</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine8UserData8IsActiveEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8UserData6typeIDE">
+<span id="_CPPv3N10GameEngine8UserData6typeIDE"></span><span id="_CPPv2N10GameEngine8UserData6typeIDE"></span><span id="GameEngine::UserData::typeID__uint32_t"></span><span class="target" id="struct_game_engine_1_1_user_data_1a68c3240a10def85644d4c1f1e9afadd3"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">typeID</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10GameEngine8UserData6typeIDE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine8UserData6objectE">
+<span id="_CPPv3N10GameEngine8UserData6objectE"></span><span id="_CPPv2N10GameEngine8UserData6objectE"></span><span id="GameEngine::UserData::object__IGameObjectP"></span><span class="target" id="struct_game_engine_1_1_user_data_1a99c6f01730314bd931a7634c3e6de260"></span><a class="reference internal" href="Core.html#_CPPv4N10GameEngine11IGameObjectE" title="GameEngine::IGameObject"><span class="n"><span class="pre">IGameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">object</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span><a class="headerlink" href="#_CPPv4N10GameEngine8UserData6objectE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="Common.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Common</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="Audio.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Audio</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Collision</a><ul>
+<li><a class="reference internal" href="#collider-h">Collider.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderE"><code class="docutils literal notranslate"><span class="pre">GameEngine::Collider</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider8ColliderEv"><code class="docutils literal notranslate"><span class="pre">Collider()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8ColliderD0Ev"><code class="docutils literal notranslate"><span class="pre">~Collider()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine8Collider16GetCollisionDataEv"><code class="docutils literal notranslate"><span class="pre">GetCollisionData()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine8Collider16GetWorldPositionEv"><code class="docutils literal notranslate"><span class="pre">GetWorldPosition()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider16SetWorldPositionERK7Vector3"><code class="docutils literal notranslate"><span class="pre">SetWorldPosition()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider27SetOnCollisionEnterCallbackENSt8functionIFvRK15CollisionResultEEE"><code class="docutils literal notranslate"><span class="pre">SetOnCollisionEnterCallback()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider16OnCollisionEnterERK15CollisionResult"><code class="docutils literal notranslate"><span class="pre">OnCollisionEnter()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider22SetOnCollisionCallbackENSt8functionIFvRK15CollisionResultEEE"><code class="docutils literal notranslate"><span class="pre">SetOnCollisionCallback()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider11OnCollisionERK15CollisionResult"><code class="docutils literal notranslate"><span class="pre">OnCollision()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine8Collider21GetCollisionAttributeEv"><code class="docutils literal notranslate"><span class="pre">GetCollisionAttribute()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider21SetCollisionAttributeERK8uint32_t"><code class="docutils literal notranslate"><span class="pre">SetCollisionAttribute()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine8Collider16GetCollisionMaskEv"><code class="docutils literal notranslate"><span class="pre">GetCollisionMask()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider16SetCollisionMaskERK8uint32_t"><code class="docutils literal notranslate"><span class="pre">SetCollisionMask()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine8Collider8IsActiveEv"><code class="docutils literal notranslate"><span class="pre">IsActive()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider9SetActiveERKb"><code class="docutils literal notranslate"><span class="pre">SetActive()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider11SetUserDataERK8UserData"><code class="docutils literal notranslate"><span class="pre">SetUserData()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine8Collider11GetUserDataEv"><code class="docutils literal notranslate"><span class="pre">GetUserData()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8Collider16StaticInitializeEP16CollisionManager"><code class="docutils literal notranslate"><span class="pre">StaticInitialize()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine14SphereColliderE"><code class="docutils literal notranslate"><span class="pre">GameEngine::SphereCollider</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine14SphereCollider16GetCollisionDataEv"><code class="docutils literal notranslate"><span class="pre">GetCollisionData()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine14SphereCollider9GetRadiusEv"><code class="docutils literal notranslate"><span class="pre">GetRadius()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine14SphereCollider9SetRadiusERKf"><code class="docutils literal notranslate"><span class="pre">SetRadius()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12AABBColliderE"><code class="docutils literal notranslate"><span class="pre">GameEngine::AABBCollider</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine12AABBCollider16GetCollisionDataEv"><code class="docutils literal notranslate"><span class="pre">GetCollisionData()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine12AABBCollider7GetSizeEv"><code class="docutils literal notranslate"><span class="pre">GetSize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12AABBCollider7SetSizeERK7Vector3"><code class="docutils literal notranslate"><span class="pre">SetSize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine12AABBCollider14GetAnchorPointEv"><code class="docutils literal notranslate"><span class="pre">GetAnchorPoint()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12AABBCollider14SetAnchorPointERK7Vector3"><code class="docutils literal notranslate"><span class="pre">SetAnchorPoint()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine15SegmentColliderE"><code class="docutils literal notranslate"><span class="pre">GameEngine::SegmentCollider</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine15SegmentCollider16GetCollisionDataEv"><code class="docutils literal notranslate"><span class="pre">GetCollisionData()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine15SegmentCollider7GetDiffEv"><code class="docutils literal notranslate"><span class="pre">GetDiff()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine15SegmentCollider7SetDiffERK7Vector3"><code class="docutils literal notranslate"><span class="pre">SetDiff()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine11OBBColliderE"><code class="docutils literal notranslate"><span class="pre">GameEngine::OBBCollider</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine11OBBCollider16GetCollisionDataEv"><code class="docutils literal notranslate"><span class="pre">GetCollisionData()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine11OBBCollider15SetOrientationsEAL3E_7Vector3"><code class="docutils literal notranslate"><span class="pre">SetOrientations()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine11OBBCollider15GetOrientationsEv"><code class="docutils literal notranslate"><span class="pre">GetOrientations()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine11OBBCollider28UpdateOrientationsFromRotateERK7Vector3"><code class="docutils literal notranslate"><span class="pre">UpdateOrientationsFromRotate()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine11OBBCollider7SetSizeERK7Vector3"><code class="docutils literal notranslate"><span class="pre">SetSize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine11OBBCollider7GetSizeEv"><code class="docutils literal notranslate"><span class="pre">GetSize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine11OBBCollider9SetAnchorERK7Vector3"><code class="docutils literal notranslate"><span class="pre">SetAnchor()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine11OBBCollider9GetAnchorEv"><code class="docutils literal notranslate"><span class="pre">GetAnchor()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#colliderinfo-h">ColliderInfo.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine17ColliderShapeDataE"><code class="docutils literal notranslate"><span class="pre">GameEngine::ColliderShapeData</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine17ColliderShapeData4typeE"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine17ColliderShapeData6radiusE"><code class="docutils literal notranslate"><span class="pre">radius</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine17ColliderShapeData11anchorPointE"><code class="docutils literal notranslate"><span class="pre">anchorPoint</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine17ColliderShapeData6rotateE"><code class="docutils literal notranslate"><span class="pre">rotate</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine17ColliderShapeData7boxSizeE"><code class="docutils literal notranslate"><span class="pre">boxSize</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine13CollisionDataE"><code class="docutils literal notranslate"><span class="pre">GameEngine::CollisionData</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4I0ENK10GameEngine13CollisionData3GetEPK1Tv"><code class="docutils literal notranslate"><span class="pre">Get()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4I0EN10GameEngine13CollisionData3GetEP1Tv"><code class="docutils literal notranslate"><span class="pre">Get()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine13CollisionData4dataE"><code class="docutils literal notranslate"><span class="pre">data</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine13CollisionData9shapeTypeE"><code class="docutils literal notranslate"><span class="pre">shapeType</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#collisionmanager-h">CollisionManager.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManagerE"><code class="docutils literal notranslate"><span class="pre">GameEngine::CollisionManager</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManager16CollisionManagerEv"><code class="docutils literal notranslate"><span class="pre">CollisionManager()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManagerD0Ev"><code class="docutils literal notranslate"><span class="pre">~CollisionManager()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManager18CheckAllCollisionsEv"><code class="docutils literal notranslate"><span class="pre">CheckAllCollisions()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManager9ClearListEv"><code class="docutils literal notranslate"><span class="pre">ClearList()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManager11AddColliderEP8Collider"><code class="docutils literal notranslate"><span class="pre">AddCollider()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManager14RemoveColliderEP8Collider"><code class="docutils literal notranslate"><span class="pre">RemoveCollider()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManager9DebugDrawEP13DebugRenderer"><code class="docutils literal notranslate"><span class="pre">DebugDraw()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionManager8PairHashE"><code class="docutils literal notranslate"><span class="pre">GameEngine::CollisionManager::PairHash</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionManager8PairHashclERKNSt4pairIP8ColliderP8ColliderEE"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#collisionresult-h">CollisionResult.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResultE"><code class="docutils literal notranslate"><span class="pre">GameEngine::CollisionResult</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResult5isHitE"><code class="docutils literal notranslate"><span class="pre">isHit</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResult15contactPositionE"><code class="docutils literal notranslate"><span class="pre">contactPosition</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResult13contactNormalE"><code class="docutils literal notranslate"><span class="pre">contactNormal</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResult16penetrationDepthE"><code class="docutils literal notranslate"><span class="pre">penetrationDepth</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine15CollisionResult8userDataE"><code class="docutils literal notranslate"><span class="pre">userData</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#collisionvisitor-h">CollisionVisitor.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine16CollisionVisitorE"><code class="docutils literal notranslate"><span class="pre">GameEngine::CollisionVisitor</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK6Sphere"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK4AABB"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK4AABB"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK6Sphere"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK4AABBRK7Segment"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK7SegmentRK4AABB"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK3OBBRK6Sphere"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK6SphereRK3OBB"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine16CollisionVisitorclERK3OBBRK7Segment"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4I00ENK10GameEngine16CollisionVisitorclE15CollisionResultRK1TRK1U"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#userdata-h">UserData.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8UserDataE"><code class="docutils literal notranslate"><span class="pre">GameEngine::UserData</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4I0ENK10GameEngine8UserData2AsEP1Tv"><code class="docutils literal notranslate"><span class="pre">As()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine8UserData8IsActiveEv"><code class="docutils literal notranslate"><span class="pre">IsActive()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8UserData6typeIDE"><code class="docutils literal notranslate"><span class="pre">typeID</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine8UserData6objectE"><code class="docutils literal notranslate"><span class="pre">object</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=c033477b"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=4755f45a"></script>
+    </body>
+</html>

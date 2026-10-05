@@ -1,0 +1,807 @@
+<!doctype html>
+<html class="no-js" lang="ja" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="検索" href="../search.html"><link rel="next" title="Math" href="Math.html"><link rel="prev" title="Graphics" href="Graphics.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Input - AquaEngine</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">AquaEngine</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">AquaEngine</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="検索" name="q" aria-label="検索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">ガイド</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/getting_started.html">はじめに</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">リファレンス</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">APIリファレンス</a><input aria-label="Toggle navigation of APIリファレンス" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2D.html">2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3D.html">3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision.html">Collision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Common.html">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Editor.html">Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Graphics.html">Graphics</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scene.html">Scene</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/Input.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="input">
+<h1>Input<a class="headerlink" href="#input" title="Link to this heading">¶</a></h1>
+<section id="input-h">
+<h2>InPut.h<a class="headerlink" href="#input-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Input/InPut.h</span></code></p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5InputE">
+<span id="_CPPv3N10GameEngine5InputE"></span><span id="_CPPv2N10GameEngine5InputE"></span><span id="GameEngine::Input"></span><span class="target" id="class_game_engine_1_1_input"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Input</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine5InputE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input5InputEv">
+<span id="_CPPv3N10GameEngine5Input5InputEv"></span><span id="_CPPv2N10GameEngine5Input5InputEv"></span><span id="GameEngine::Input::Input"></span><span class="target" id="class_game_engine_1_1_input_1a890a8ce40c44f693fe194016a84d14e1"></span><span class="sig-name descname"><span class="n"><span class="pre">Input</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10GameEngine5Input5InputEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5InputD0Ev">
+<span id="_CPPv3N10GameEngine5InputD0Ev"></span><span id="_CPPv2N10GameEngine5InputD0Ev"></span><span id="GameEngine::Input::~Input"></span><span class="target" id="class_game_engine_1_1_input_1a525da1ece18dc0d1d2998bdc91847043"></span><span class="sig-name descname"><span class="n"><span class="pre">~Input</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10GameEngine5InputD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input10InitializeE9HINSTANCE4HWND">
+<span id="_CPPv3N10GameEngine5Input10InitializeE9HINSTANCE4HWND"></span><span id="_CPPv2N10GameEngine5Input10InitializeE9HINSTANCE4HWND"></span><span id="GameEngine::Input::Initialize__HINSTANCE.HWND"></span><span class="target" id="class_game_engine_1_1_input_1a71b23b3bb1cc695def7ef59fba229741"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Initialize</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">HINSTANCE</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hInstance</span></span>, <span class="n"><span class="pre">HWND</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hwnd</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input10InitializeE9HINSTANCE4HWND" title="Link to this definition">¶</a><br /></dt>
+<dd><p>初期化 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input6UpdateEv">
+<span id="_CPPv3N10GameEngine5Input6UpdateEv"></span><span id="_CPPv2N10GameEngine5Input6UpdateEv"></span><span id="GameEngine::Input::Update"></span><span class="target" id="class_game_engine_1_1_input_1a2f1f5df26c0ce0425f1d03cfade8e7c4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Update</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input6UpdateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>毎フレーム処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input7PushKeyE4BYTE">
+<span id="_CPPv3NK10GameEngine5Input7PushKeyE4BYTE"></span><span id="_CPPv2NK10GameEngine5Input7PushKeyE4BYTE"></span><span id="GameEngine::Input::PushKey__BYTEC"></span><span class="target" id="class_game_engine_1_1_input_1afdd7877fe4c513904889677739adfab4"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PushKey</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">BYTE</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keyNumber</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input7PushKeyE4BYTE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>キーの押下をチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keyNumber</strong> -- キー番号(DIK_?)</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>押されているか</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input10TriggerKeyE4BYTE">
+<span id="_CPPv3NK10GameEngine5Input10TriggerKeyE4BYTE"></span><span id="_CPPv2NK10GameEngine5Input10TriggerKeyE4BYTE"></span><span id="GameEngine::Input::TriggerKey__BYTEC"></span><span class="target" id="class_game_engine_1_1_input_1a7d0e50e23f6a346a92d4ab4bf0ce7cf7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TriggerKey</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">BYTE</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keyNumber</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input10TriggerKeyE4BYTE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>キーのトリガーをチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keyNumber</strong> -- キー番号(DIK_?)</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>トリガーか</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input10ReleaseKeyE4BYTE">
+<span id="_CPPv3NK10GameEngine5Input10ReleaseKeyE4BYTE"></span><span id="_CPPv2NK10GameEngine5Input10ReleaseKeyE4BYTE"></span><span id="GameEngine::Input::ReleaseKey__BYTEC"></span><span class="target" id="class_game_engine_1_1_input_1ad6301126cf8982343c6c2e3866449cd4"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReleaseKey</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">BYTE</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keyNumber</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input10ReleaseKeyE4BYTE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>キーのリリースをチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keyNumber</strong> -- キー番号(DIK_?)</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>離された瞬間か</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input9PushMouseE7int32_t">
+<span id="_CPPv3NK10GameEngine5Input9PushMouseE7int32_t"></span><span id="_CPPv2NK10GameEngine5Input9PushMouseE7int32_t"></span><span id="GameEngine::Input::PushMouse__int32_tC"></span><span class="target" id="class_game_engine_1_1_input_1a5396a4916a94fbaffcdb051cea4d77f8"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PushMouse</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mouseNumber</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input9PushMouseE7int32_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>マウスの押下をチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>buttonNumber</strong> -- マウスボタン番号(左:0,右:1,中:2,拡張マウスボタン:3~7)</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>押されているか</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input12TriggerMouseE7int32_t">
+<span id="_CPPv3NK10GameEngine5Input12TriggerMouseE7int32_t"></span><span id="_CPPv2NK10GameEngine5Input12TriggerMouseE7int32_t"></span><span id="GameEngine::Input::TriggerMouse__int32_tC"></span><span class="target" id="class_game_engine_1_1_input_1a780d6c1bc46ebb8ebb3bd390d7c6e6d3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TriggerMouse</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buttonNumber</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input12TriggerMouseE7int32_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>マウスのトリガーをチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>buttonNumber</strong> -- マウスボタン番号(左:0,右:1,中:2,拡張マウスボタン:3~7)</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>トリガーか</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input12ReleaseMouseE7int32_t">
+<span id="_CPPv3NK10GameEngine5Input12ReleaseMouseE7int32_t"></span><span id="_CPPv2NK10GameEngine5Input12ReleaseMouseE7int32_t"></span><span id="GameEngine::Input::ReleaseMouse__int32_tC"></span><span class="target" id="class_game_engine_1_1_input_1a459655db639c2da13af2742e11a1045e"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReleaseMouse</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buttonNumber</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input12ReleaseMouseE7int32_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>マウスのリリースをチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>buttonNumber</strong> -- マウスボタン番号(左:0,右:1,中:2,拡張マウスボタン:3~7)</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>離された瞬間か</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input16GetMousePositionEv">
+<span id="_CPPv3NK10GameEngine5Input16GetMousePositionEv"></span><span id="_CPPv2NK10GameEngine5Input16GetMousePositionEv"></span><span id="GameEngine::Input::GetMousePositionC"></span><span class="target" id="class_game_engine_1_1_input_1a1551d70a92fbf05fc169d92841c49df3"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector2" title="Vector2"><span class="n"><span class="pre">Vector2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetMousePosition</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input16GetMousePositionEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>マウスの位置を取得する（ウィンドウ座標系） </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>マウスの位置</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input13GetMouseDeltaEv">
+<span id="_CPPv3N10GameEngine5Input13GetMouseDeltaEv"></span><span id="_CPPv2N10GameEngine5Input13GetMouseDeltaEv"></span><span id="GameEngine::Input::GetMouseDelta"></span><span class="target" id="class_game_engine_1_1_input_1a7aa83914a9cb23998aa4fdddebcba243"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="Math.html#_CPPv47Vector2" title="Vector2"><span class="n"><span class="pre">Vector2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetMouseDelta</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input13GetMouseDeltaEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>マウスの移動量を取得（ウィンドウ座標系） </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input8GetWheelEv">
+<span id="_CPPv3NK10GameEngine5Input8GetWheelEv"></span><span id="_CPPv2NK10GameEngine5Input8GetWheelEv"></span><span id="GameEngine::Input::GetWheelC"></span><span class="target" id="class_game_engine_1_1_input_1a6d517c99835325a8dbcccbe0aa80b6b0"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetWheel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input8GetWheelEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>ホイールスクロール量を取得する </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ホイールスクロール量。奥側に回したら+。Windowsの設定で逆にしてたら逆</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input7PushPadE4WORD">
+<span id="_CPPv3NK10GameEngine5Input7PushPadE4WORD"></span><span id="_CPPv2NK10GameEngine5Input7PushPadE4WORD"></span><span id="GameEngine::Input::PushPad__WORDC"></span><span class="target" id="class_game_engine_1_1_input_1af078b93a7dd35cb051b11c2be908fd15"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PushPad</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">WORD</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">button</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input7PushPadE4WORD" title="Link to this definition">¶</a><br /></dt>
+<dd><p>パッドの押下ををチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>button</strong> -- </p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input10TriggerPadE4WORD">
+<span id="_CPPv3NK10GameEngine5Input10TriggerPadE4WORD"></span><span id="_CPPv2NK10GameEngine5Input10TriggerPadE4WORD"></span><span id="GameEngine::Input::TriggerPad__WORDC"></span><span class="target" id="class_game_engine_1_1_input_1a2482927547cb5e499bd02372beb6c6f5"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TriggerPad</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">WORD</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">button</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input10TriggerPadE4WORD" title="Link to this definition">¶</a><br /></dt>
+<dd><p>パッドのトリガーをチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>button</strong> -- </p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input10ReleasePadE4WORD">
+<span id="_CPPv3NK10GameEngine5Input10ReleasePadE4WORD"></span><span id="_CPPv2NK10GameEngine5Input10ReleasePadE4WORD"></span><span id="GameEngine::Input::ReleasePad__WORDC"></span><span class="target" id="class_game_engine_1_1_input_1a13dcf16746ef6844d97446eff498bd69"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReleasePad</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">WORD</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">button</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input10ReleasePadE4WORD" title="Link to this definition">¶</a><br /></dt>
+<dd><p>パッドのリリースをチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>button</strong> -- </p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>離された瞬間か</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input12GetLeftStickEv">
+<span id="_CPPv3N10GameEngine5Input12GetLeftStickEv"></span><span id="_CPPv2N10GameEngine5Input12GetLeftStickEv"></span><span id="GameEngine::Input::GetLeftStick"></span><span class="target" id="class_game_engine_1_1_input_1a403ffb5743288de427312eab01bf53d8"></span><a class="reference internal" href="Math.html#_CPPv47Vector2" title="Vector2"><span class="n"><span class="pre">Vector2</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetLeftStick</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input12GetLeftStickEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>パッドの左スティック座標を取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input13GetRightStickEv">
+<span id="_CPPv3N10GameEngine5Input13GetRightStickEv"></span><span id="_CPPv2N10GameEngine5Input13GetRightStickEv"></span><span id="GameEngine::Input::GetRightStick"></span><span class="target" id="class_game_engine_1_1_input_1a72df4eab618623db695e565f43ea70c3"></span><a class="reference internal" href="Math.html#_CPPv47Vector2" title="Vector2"><span class="n"><span class="pre">Vector2</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetRightStick</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input13GetRightStickEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>パッドの右スティック座標を取得 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input21GetPushPadLeftTriggerERKf">
+<span id="_CPPv3N10GameEngine5Input21GetPushPadLeftTriggerERKf"></span><span id="_CPPv2N10GameEngine5Input21GetPushPadLeftTriggerERKf"></span><span id="GameEngine::Input::GetPushPadLeftTrigger__floatCR"></span><span class="target" id="class_game_engine_1_1_input_1adfc7c4cf20a25aa2dba315e212ac3f33"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetPushPadLeftTrigger</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">static_cast</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">XINPUT_GAMEPAD_TRIGGER_THRESHOLD</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input21GetPushPadLeftTriggerERKf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>LeftTriggerの押下をチェック (デフォルト値は30.0f). </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> -- どこから押下を判定するかの値。範囲 : (0~255), 0:完全に離している, 255:完全に引き切る</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input24GetTriggerPadLeftTriggerERKf">
+<span id="_CPPv3N10GameEngine5Input24GetTriggerPadLeftTriggerERKf"></span><span id="_CPPv2N10GameEngine5Input24GetTriggerPadLeftTriggerERKf"></span><span id="GameEngine::Input::GetTriggerPadLeftTrigger__floatCR"></span><span class="target" id="class_game_engine_1_1_input_1aa20c311768ef60b8b976214688cb46f6"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetTriggerPadLeftTrigger</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">static_cast</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">XINPUT_GAMEPAD_TRIGGER_THRESHOLD</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input24GetTriggerPadLeftTriggerERKf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>LeftTriggerのトリガー（押した瞬間）をチェック(デフォルト値は30.0f). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input24GetReleasePadLeftTriggerERKf">
+<span id="_CPPv3N10GameEngine5Input24GetReleasePadLeftTriggerERKf"></span><span id="_CPPv2N10GameEngine5Input24GetReleasePadLeftTriggerERKf"></span><span id="GameEngine::Input::GetReleasePadLeftTrigger__floatCR"></span><span class="target" id="class_game_engine_1_1_input_1aa3beb86ebf6eb3a917ca33cf26311a7e"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetReleasePadLeftTrigger</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">static_cast</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">XINPUT_GAMEPAD_TRIGGER_THRESHOLD</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input24GetReleasePadLeftTriggerERKf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>LeftTriggerのリリースをチェック (デフォルト値は30.0f). </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> -- 押下判定に用いたしきい値</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>離された瞬間か</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input22GetPushPadRightTriggerERKf">
+<span id="_CPPv3N10GameEngine5Input22GetPushPadRightTriggerERKf"></span><span id="_CPPv2N10GameEngine5Input22GetPushPadRightTriggerERKf"></span><span id="GameEngine::Input::GetPushPadRightTrigger__floatCR"></span><span class="target" id="class_game_engine_1_1_input_1aa5bc4508dfa0fb53e5ee1c150f1826f1"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetPushPadRightTrigger</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">static_cast</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">XINPUT_GAMEPAD_TRIGGER_THRESHOLD</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input22GetPushPadRightTriggerERKf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>RightTriggerの押下をチェック (デフォルト値は30.0f). </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> -- どこから押下を判定するかの値。範囲 : (0~255), 0:完全に離している, 255:完全に引き切る</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input25GetTriggerPadRightTriggerERKf">
+<span id="_CPPv3N10GameEngine5Input25GetTriggerPadRightTriggerERKf"></span><span id="_CPPv2N10GameEngine5Input25GetTriggerPadRightTriggerERKf"></span><span id="GameEngine::Input::GetTriggerPadRightTrigger__floatCR"></span><span class="target" id="class_game_engine_1_1_input_1a0251bd3251f201942b8974fdb3ae9362"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetTriggerPadRightTrigger</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">static_cast</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">XINPUT_GAMEPAD_TRIGGER_THRESHOLD</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input25GetTriggerPadRightTriggerERKf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>RightTriggerのトリガー（押した瞬間）をチェック(デフォルト値は30.0f). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input25GetReleasePadRightTriggerERKf">
+<span id="_CPPv3N10GameEngine5Input25GetReleasePadRightTriggerERKf"></span><span id="_CPPv2N10GameEngine5Input25GetReleasePadRightTriggerERKf"></span><span id="GameEngine::Input::GetReleasePadRightTrigger__floatCR"></span><span class="target" id="class_game_engine_1_1_input_1a2b7fd8bfbc4bbc331528e796777f5bfc"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetReleasePadRightTrigger</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">static_cast</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">XINPUT_GAMEPAD_TRIGGER_THRESHOLD</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input25GetReleasePadRightTriggerERKf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>RightTriggerのリリースをチェック (デフォルト値は30.0f). </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> -- 押下判定に用いたしきい値</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>離された瞬間か</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine5Input12SetVibrationEff">
+<span id="_CPPv3N10GameEngine5Input12SetVibrationEff"></span><span id="_CPPv2N10GameEngine5Input12SetVibrationEff"></span><span id="GameEngine::Input::SetVibration__float.float"></span><span class="target" id="class_game_engine_1_1_input_1a32070cfe86abc76a6ec85ced6e275c1c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetVibration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">leftMotorSpeed</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">rightMotorSpeed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine5Input12SetVibrationEff" title="Link to this definition">¶</a><br /></dt>
+<dd><p>振動させる </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>leftMotorSpeed</strong> -- 0~1に正規化済み</p></li>
+<li><p><strong>rightMotorSpeed</strong> -- 0~1に正規化済み</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine5Input14IsPadConnectedEv">
+<span id="_CPPv3NK10GameEngine5Input14IsPadConnectedEv"></span><span id="_CPPv2NK10GameEngine5Input14IsPadConnectedEv"></span><span id="GameEngine::Input::IsPadConnectedC"></span><span class="target" id="class_game_engine_1_1_input_1ab65aff365103d3fb8a7c78d7c3b1f5d7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsPadConnected</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine5Input14IsPadConnectedEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>パッドの接続を確認 </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="inputcommand-h">
+<h2>InputCommand.h<a class="headerlink" href="#inputcommand-h" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Input/InputCommand.h</span></code></p>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine14InputConditionE">
+<span id="_CPPv3N10GameEngine14InputConditionE"></span><span id="_CPPv2N10GameEngine14InputConditionE"></span><span id="GameEngine::InputCondition"></span><span class="target" id="struct_game_engine_1_1_input_condition"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InputCondition</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine14InputConditionE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine14InputCondition10inputStateE">
+<span id="_CPPv3N10GameEngine14InputCondition10inputStateE"></span><span id="_CPPv2N10GameEngine14InputCondition10inputStateE"></span><span id="GameEngine::InputCondition::inputState__InputState"></span><span class="target" id="struct_game_engine_1_1_input_condition_1a5c1550f0d823216e50e8abf82c036fa2"></span><span class="n"><span class="pre">InputState</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inputState</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine14InputCondition10inputStateE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine14InputCondition4codeE">
+<span id="_CPPv3N10GameEngine14InputCondition4codeE"></span><span id="_CPPv2N10GameEngine14InputCondition4codeE"></span><span id="GameEngine::InputCondition::code__int32_t"></span><span class="target" id="struct_game_engine_1_1_input_condition_1a826c273034361f9863ac3e313cfda84f"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">code</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine14InputCondition4codeE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine14InputCondition9directionE">
+<span id="_CPPv3N10GameEngine14InputCondition9directionE"></span><span id="_CPPv2N10GameEngine14InputCondition9directionE"></span><span id="GameEngine::InputCondition::direction__Vector2"></span><span class="target" id="struct_game_engine_1_1_input_condition_1a382ca05f7ff8bd07b91928def526a25f"></span><a class="reference internal" href="Math.html#_CPPv47Vector2" title="Vector2"><span class="n"><span class="pre">Vector2</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">direction</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N10GameEngine14InputCondition9directionE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine14InputCondition9thresholdE">
+<span id="_CPPv3N10GameEngine14InputCondition9thresholdE"></span><span id="_CPPv2N10GameEngine14InputCondition9thresholdE"></span><span id="GameEngine::InputCondition::threshold__float"></span><span class="target" id="struct_game_engine_1_1_input_condition_1a7ac63a36df98889be4ba1790700a6432"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">threshold</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.2f</span></span><a class="headerlink" href="#_CPPv4N10GameEngine14InputCondition9thresholdE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12InputCommandE">
+<span id="_CPPv3N10GameEngine12InputCommandE"></span><span id="_CPPv2N10GameEngine12InputCommandE"></span><span id="GameEngine::InputCommand"></span><span class="target" id="class_game_engine_1_1_input_command"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InputCommand</span></span></span><a class="headerlink" href="#_CPPv4N10GameEngine12InputCommandE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12InputCommandD0Ev">
+<span id="_CPPv3N10GameEngine12InputCommandD0Ev"></span><span id="_CPPv2N10GameEngine12InputCommandD0Ev"></span><span id="GameEngine::InputCommand::~InputCommand"></span><span class="target" id="class_game_engine_1_1_input_command_1a692df4761a9529b3ffe52448155b4fe2"></span><span class="sig-name descname"><span class="n"><span class="pre">~InputCommand</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10GameEngine12InputCommandD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12InputCommand12InputCommandEP5Input">
+<span id="_CPPv3N10GameEngine12InputCommand12InputCommandEP5Input"></span><span id="_CPPv2N10GameEngine12InputCommand12InputCommandEP5Input"></span><span id="GameEngine::InputCommand::InputCommand__InputP"></span><span class="target" id="class_game_engine_1_1_input_command_1ad4355836501cb15297b34bbeb6562970"></span><span class="sig-name descname"><span class="n"><span class="pre">InputCommand</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N10GameEngine5InputE" title="GameEngine::Input"><span class="n"><span class="pre">Input</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12InputCommand12InputCommandEP5Input" title="Link to this definition">¶</a><br /></dt>
+<dd><p>入力処理を受け取る </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12InputCommand6UpdateEv">
+<span id="_CPPv3N10GameEngine12InputCommand6UpdateEv"></span><span id="_CPPv2N10GameEngine12InputCommand6UpdateEv"></span><span id="GameEngine::InputCommand::Update"></span><span class="target" id="class_game_engine_1_1_input_command_1a8ef224a0e9ae29c251d7dc4700ab00ff"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Update</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12InputCommand6UpdateEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>更新処理 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12InputCommand15RegisterCommandERKNSt6stringERKNSt6vectorI14InputConditionEE">
+<span id="_CPPv3N10GameEngine12InputCommand15RegisterCommandERKNSt6stringERKNSt6vectorI14InputConditionEE"></span><span id="_CPPv2N10GameEngine12InputCommand15RegisterCommandERKNSt6stringERKNSt6vectorI14InputConditionEE"></span><span id="GameEngine::InputCommand::RegisterCommand__ssCR.std::vector:InputCondition:CR"></span><span class="target" id="class_game_engine_1_1_input_command_1a79b91d0233d8e89c786bdde5669d25ed"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RegisterCommand</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">commandName</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N10GameEngine14InputConditionE" title="GameEngine::InputCondition"><span class="n"><span class="pre">InputCondition</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conditions</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12InputCommand15RegisterCommandERKNSt6stringERKNSt6vectorI14InputConditionEE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>コマンドを登録する </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>commandName</strong> -- コマンドの名前</p></li>
+<li><p><strong>conditions</strong> -- コマンドの振る舞い</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12InputCommand17UnregisterCommandERKNSt6stringE">
+<span id="_CPPv3N10GameEngine12InputCommand17UnregisterCommandERKNSt6stringE"></span><span id="_CPPv2N10GameEngine12InputCommand17UnregisterCommandERKNSt6stringE"></span><span id="GameEngine::InputCommand::UnregisterCommand__ssCR"></span><span class="target" id="class_game_engine_1_1_input_command_1a690bacb6f1b1a4790a4a339a5cd13c6f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UnregisterCommand</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">commandName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12InputCommand17UnregisterCommandERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>コマンドを削除 </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>commandName</strong> -- コマンド名</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10GameEngine12InputCommand15IsCommandActiveERKNSt6stringE">
+<span id="_CPPv3NK10GameEngine12InputCommand15IsCommandActiveERKNSt6stringE"></span><span id="_CPPv2NK10GameEngine12InputCommand15IsCommandActiveERKNSt6stringE"></span><span id="GameEngine::InputCommand::IsCommandActive__ssCRC"></span><span class="target" id="class_game_engine_1_1_input_command_1a689ec68980c6ef51ab11672de0521a98"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsCommandActive</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">commandName</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10GameEngine12InputCommand15IsCommandActiveERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>指定したコマンドが押されているかをチェック </p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12InputCommand16ClearAllCommandsEv">
+<span id="_CPPv3N10GameEngine12InputCommand16ClearAllCommandsEv"></span><span id="_CPPv2N10GameEngine12InputCommand16ClearAllCommandsEv"></span><span id="GameEngine::InputCommand::ClearAllCommands"></span><span class="target" id="class_game_engine_1_1_input_command_1a16d9db04502985fd085f7f5421b1e116"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ClearAllCommands</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12InputCommand16ClearAllCommandsEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>全てのコマンドを削除 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10GameEngine12InputCommand16PlayPadVibrationEff">
+<span id="_CPPv3N10GameEngine12InputCommand16PlayPadVibrationEff"></span><span id="_CPPv2N10GameEngine12InputCommand16PlayPadVibrationEff"></span><span id="GameEngine::InputCommand::PlayPadVibration__float.float"></span><span class="target" id="class_game_engine_1_1_input_command_1a0be5380bb3d20492c17135855942643f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PlayPadVibration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">right</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10GameEngine12InputCommand16PlayPadVibrationEff" title="Link to this definition">¶</a><br /></dt>
+<dd><p>振動させる(0~1の範囲を入れる) </p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left</strong> -- 左モーター : 低周波</p></li>
+<li><p><strong>right</strong> -- 右モーター : 高周波</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="Math.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Math</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="Graphics.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Graphics</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Input</a><ul>
+<li><a class="reference internal" href="#input-h">InPut.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5InputE"><code class="docutils literal notranslate"><span class="pre">GameEngine::Input</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input5InputEv"><code class="docutils literal notranslate"><span class="pre">Input()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5InputD0Ev"><code class="docutils literal notranslate"><span class="pre">~Input()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input10InitializeE9HINSTANCE4HWND"><code class="docutils literal notranslate"><span class="pre">Initialize()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input6UpdateEv"><code class="docutils literal notranslate"><span class="pre">Update()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input7PushKeyE4BYTE"><code class="docutils literal notranslate"><span class="pre">PushKey()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input10TriggerKeyE4BYTE"><code class="docutils literal notranslate"><span class="pre">TriggerKey()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input10ReleaseKeyE4BYTE"><code class="docutils literal notranslate"><span class="pre">ReleaseKey()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input9PushMouseE7int32_t"><code class="docutils literal notranslate"><span class="pre">PushMouse()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input12TriggerMouseE7int32_t"><code class="docutils literal notranslate"><span class="pre">TriggerMouse()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input12ReleaseMouseE7int32_t"><code class="docutils literal notranslate"><span class="pre">ReleaseMouse()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input16GetMousePositionEv"><code class="docutils literal notranslate"><span class="pre">GetMousePosition()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input13GetMouseDeltaEv"><code class="docutils literal notranslate"><span class="pre">GetMouseDelta()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input8GetWheelEv"><code class="docutils literal notranslate"><span class="pre">GetWheel()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input7PushPadE4WORD"><code class="docutils literal notranslate"><span class="pre">PushPad()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input10TriggerPadE4WORD"><code class="docutils literal notranslate"><span class="pre">TriggerPad()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input10ReleasePadE4WORD"><code class="docutils literal notranslate"><span class="pre">ReleasePad()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input12GetLeftStickEv"><code class="docutils literal notranslate"><span class="pre">GetLeftStick()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input13GetRightStickEv"><code class="docutils literal notranslate"><span class="pre">GetRightStick()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input21GetPushPadLeftTriggerERKf"><code class="docutils literal notranslate"><span class="pre">GetPushPadLeftTrigger()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input24GetTriggerPadLeftTriggerERKf"><code class="docutils literal notranslate"><span class="pre">GetTriggerPadLeftTrigger()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input24GetReleasePadLeftTriggerERKf"><code class="docutils literal notranslate"><span class="pre">GetReleasePadLeftTrigger()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input22GetPushPadRightTriggerERKf"><code class="docutils literal notranslate"><span class="pre">GetPushPadRightTrigger()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input25GetTriggerPadRightTriggerERKf"><code class="docutils literal notranslate"><span class="pre">GetTriggerPadRightTrigger()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input25GetReleasePadRightTriggerERKf"><code class="docutils literal notranslate"><span class="pre">GetReleasePadRightTrigger()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine5Input12SetVibrationEff"><code class="docutils literal notranslate"><span class="pre">SetVibration()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine5Input14IsPadConnectedEv"><code class="docutils literal notranslate"><span class="pre">IsPadConnected()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inputcommand-h">InputCommand.h</a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine14InputConditionE"><code class="docutils literal notranslate"><span class="pre">GameEngine::InputCondition</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine14InputCondition10inputStateE"><code class="docutils literal notranslate"><span class="pre">inputState</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine14InputCondition4codeE"><code class="docutils literal notranslate"><span class="pre">code</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine14InputCondition9directionE"><code class="docutils literal notranslate"><span class="pre">direction</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine14InputCondition9thresholdE"><code class="docutils literal notranslate"><span class="pre">threshold</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12InputCommandE"><code class="docutils literal notranslate"><span class="pre">GameEngine::InputCommand</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12InputCommandD0Ev"><code class="docutils literal notranslate"><span class="pre">~InputCommand()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12InputCommand12InputCommandEP5Input"><code class="docutils literal notranslate"><span class="pre">InputCommand()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12InputCommand6UpdateEv"><code class="docutils literal notranslate"><span class="pre">Update()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12InputCommand15RegisterCommandERKNSt6stringERKNSt6vectorI14InputConditionEE"><code class="docutils literal notranslate"><span class="pre">RegisterCommand()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12InputCommand17UnregisterCommandERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">UnregisterCommand()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4NK10GameEngine12InputCommand15IsCommandActiveERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">IsCommandActive()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12InputCommand16ClearAllCommandsEv"><code class="docutils literal notranslate"><span class="pre">ClearAllCommands()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N10GameEngine12InputCommand16PlayPadVibrationEff"><code class="docutils literal notranslate"><span class="pre">PlayPadVibration()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=c033477b"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=4755f45a"></script>
+    </body>
+</html>
